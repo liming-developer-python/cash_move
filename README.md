@@ -1,5 +1,7 @@
-Cash Movement Project HP Site
+KenKen Project HP Site
 
 --------------------------------------
 Project Development Progress Report
 --------------------------------------
+
+05/07: Start
