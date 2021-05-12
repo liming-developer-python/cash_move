@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>KenKen</title>
+    <title>地域通貨</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
@@ -22,6 +22,7 @@
     <!-- Responsive Style -->
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
+    <link rel="icon" href="{{ asset('img/logo.jpg') }}" type="image/icon type">
 </head>
 <body>
 
@@ -32,7 +33,7 @@
 @yield('content')
 
 <!-- Footer Section Start -->
-@include('layout.footer')
+{{--@include('layout.footer')--}}
 
 <!-- Footer Section End -->
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -39,6 +40,13 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        return view('auth.login', [
+            'admin_check' => 1
+        ]);
+    }
+
     public function login(Request $request)
     {
         $input = $request->all();
@@ -47,6 +55,15 @@ class LoginController extends Controller
             'email'     =>  'required|email',
             'password'  =>  'required',
         ]);
+
+        $userID = DB::table('users')->select('id')->where('email', $input['email'])->get();
+        $admin_check = DB::table('user_info')->select('admin_check')->where('user_id', $userID[0]->id)->get();
+        if ($admin_check[0] -> admin_check == 0)
+        {
+            return view('auth.login', [
+                'admin_check' => 0
+            ]);
+        }
 
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
@@ -59,7 +76,7 @@ class LoginController extends Controller
         }
         else{
             return redirect()->route('login')
-                ->with('error', 'Wrong email and password');
+                ->with('error', 'email');
         }
     }
 }

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +21,13 @@ Route::get('/', function () {
     return view('home');
 });
 
-Auth::routes();
+//Auth::routes(['register' => false]);
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('show_login');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('show_register');
+Route::post('/register', [RegisterController::class, 'manualRegister'])->name('manual_register');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('admin/dash', [HomeController::class, 'adminDash'])->name('admin.dash')->middleware('is_admin');
+Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+Route::get('/admin/dash', [HomeController::class, 'adminDash'])->name('admin.dash')->middleware('is_admin');
 
