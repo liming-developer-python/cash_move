@@ -9,7 +9,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto w-100 justify-content-end clearfix">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('/') }}">
                             ホーム
                         </a>
@@ -22,6 +22,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/') }}">
+                                私のグループ
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/profile') }}">
                                 プロフィール
                             </a>
                         </li>

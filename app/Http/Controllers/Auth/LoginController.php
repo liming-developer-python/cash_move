@@ -57,6 +57,12 @@ class LoginController extends Controller
         ]);
 
         $userID = DB::table('users')->select('id')->where('email', $input['email'])->get();
+        if (count($userID) == 0)
+        {
+            return view('auth.login', [
+                'admin_check' => 2
+            ]);
+        }
         $admin_check = DB::table('user_info')->select('admin_check')->where('user_id', $userID[0]->id)->get();
         if ($admin_check[0] -> admin_check == 0)
         {
@@ -71,7 +77,7 @@ class LoginController extends Controller
                 return redirect()->route('admin.dash');
             }
             else {
-                return redirect()->route('home');
+                return redirect('/');
             }
         }
         else{

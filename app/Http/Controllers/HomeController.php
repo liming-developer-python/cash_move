@@ -27,15 +27,14 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function adminDash()
-    {
-
-        return view('adminDash');
-    }
-
     public function logout()
     {
         Auth::logout();
         return view('home');
+    }
+
+    public function profilePage()
+    {
+        return view('user.profile');
     }
 }

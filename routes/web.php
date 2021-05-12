@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -22,12 +23,17 @@ Route::get('/', function () {
 });
 
 //Auth::routes(['register' => false]);
+
+// Login And Register Part
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('show_login');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('show_register');
 Route::post('/register', [RegisterController::class, 'manualRegister'])->name('manual_register');
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
-Route::get('/admin/dash', [HomeController::class, 'adminDash'])->name('admin.dash')->middleware('is_admin');
 
+// Admin Dashboard
+Route::get('/admin/dash', [AdminController::class, 'showUser'])->name('admin.dash')->middleware('is_admin');
+Route::post('/admin/user_check', [AdminController::class, 'userCheck']);
+
+// User Pages
+Route::get('/profile', [HomeController::class, 'profilePage']);

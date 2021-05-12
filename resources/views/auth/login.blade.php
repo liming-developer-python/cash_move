@@ -13,9 +13,9 @@
 
                 <div class="card-body">
                     @if ($admin_check == 0)
-                        <span class="invalid-feedback" role="alert">
-                            <strong>メールアドレスとパスワードを正確に入力してください。</strong>
-                        </span>
+                        <p style="text-align: center; color: red; font-size: 1.2vw; margin: auto; padding-bottom: 2vh;">
+                            <strong>管理者が承認するまでお待ちください。</strong>
+                        </p>
                     @endif
                     <form method="POST" action="{{ url('/login') }}">
                         @csrf
@@ -59,7 +59,11 @@
                                 </div>
                             </div>
                         </div>
-
+                        @if ($admin_check == 2)
+                            <p style="text-align: center; color: red; font-size: 1.2vw; margin: auto; padding-bottom: 2vh;">
+                                <strong>メールアドレスとパスワードを正確に入力してください。</strong>
+                            </p>
+                        @endif
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary" style="font-size: 1vw;">
