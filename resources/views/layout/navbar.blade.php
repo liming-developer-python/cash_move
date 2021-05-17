@@ -16,13 +16,8 @@
                     </li>
                     @if(Auth::user())
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">
+                            <a class="nav-link" href="{{ url('/my-account') }}">
                                 私の口座
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">
-                                私のグループ
                             </a>
                         </li>
                         <li class="nav-item">

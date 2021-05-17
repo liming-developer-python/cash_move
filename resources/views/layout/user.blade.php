@@ -50,6 +50,7 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
     <link rel="icon" href="{{ asset('img/logo.jpg') }}" type="image/icon type">
+    @yield('page-css')
 </head>
 <body>
 
@@ -96,13 +97,19 @@
 <!-- Fullside-menu Js-->
 <script src="{{asset('admin/plugins/toggle-sidebar/js/sidemenu.js')}}"></script>
 
+<!--Time Counter -->
+<script src="{{asset('admin/plugins/counters/jquery.missofis-countdown.js')}}"></script>
+<script src="{{asset('admin/plugins/counters/counter.js')}}"></script>
 
+<!--Counters -->
+<script src="{{asset('admin/plugins/counters/counterup.min.js')}}"></script>
+<script src="{{asset('admin/plugins/counters/waypoints.min.js')}}"></script>
 <!-- Custom scroll bar Js-->
 <script src="{{asset('admin/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 
 <!-- Custom Js-->
 <script src="{{asset('admin/js/custom.js')}}"></script>
-
+@yield('page-js')
 </body>
 </html>
 

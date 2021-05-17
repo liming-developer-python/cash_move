@@ -14,59 +14,60 @@
                         <div class="card-header">
                             <h3 class="card-title">プロフィール</h3>
                         </div>
-                        <div class="card-body">
-                            <form>
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <h3 class="mb-1 ">George Mestayer</h3>
-                                    </div>
+                        <div class="card-body" style="color: #00aced;">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <h3 class="mb-1 ">{{$info->name}}</h3>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label">Bio</label>
-                                    <input type="form-control" class="form-control" value="nickname"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ニックネーム</label>
+                                <input id="name" type="form-control" class="form-control" value="{{$info->name}}"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">メールアドレス</label>
+                                <input id="email" class="form-control" placeholder="your-email@domain.com" value="{{$info->email}}"/>
+                            </div>
+                            <div class="row mb-2" id="info_error" style="display: none; color: red; text-align: center;">
+                                <div class="col">
+                                    <p class="mb-1 " style="font-size: 0.95vw;">ニックネームとメールアドレスを正確にご確認ください。</p>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label">Email-Address</label>
-                                    <input class="form-control" placeholder="your-email@domain.com"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">新しいパスワード</label>
+                                <input id="password" type="password" class="form-control" value="password"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">パスワード認証</label>
+                                <input id="password_confirm" type="password" class="form-control" value="password"/>
+                            </div>
+                            <div class="row mb-2" id="password_error" style="display: none; color: red; text-align: center;">
+                                <div class="col">
+                                    <p class="mb-1 " style="font-size: 1vw;">パスワードを正確にご確認ください。</p>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label">New Password</label>
-                                    <input type="password" class="form-control" value="password"/>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Confirm Password</label>
-                                    <input type="password" class="form-control" value="password"/>
-                                </div>
-                                <div class="form-footer">
-                                    <button class="btn btn-primary btn-block">変更された情報を保管</button>
-                                </div>
-                            </form>
+                            </div>
+                            <div class="form-footer">
+                                <input type="button" id="save_change" class="btn btn-primary btn-block" value="変更された情報を保管">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">グループと口座</h3>
+                            <h3 class="card-title">口座</h3>
                         </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-box tilebox-one">
-                                    <i class="icon-layers float-right text-muted"><i class="fa fa-cubes text-success" aria-hidden="true"></i></i>
-                                    <h6 class="text-drak text-uppercase mt-0">グループ</h6>
-                                    <h2 class="m-b-20">678</h2>
+                        @foreach( $account as $detail )
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-box tilebox-one">
+                                        <i class="icon-layers float-right text-muted"><i class="fa fa-bar-chart text-secondary" aria-hidden="true"></i></i>
+                                        <a href=""> <h6 class="text-drak text-uppercase mt-0">口座 ID : {{$detail->id}}</h6> </a>
+                                        <h2 class="m-b-20">{{$detail->point}}</h2>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-box tilebox-one">
-                                    <i class="icon-layers float-right text-muted"><i class="fa fa-bar-chart text-secondary" aria-hidden="true"></i></i>
-                                    <h6 class="text-drak text-uppercase mt-0">口座</h6>
-                                    <h2 class="m-b-20">7,908</h2>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -75,5 +76,38 @@
 @endsection
 
 @section('page-js')
+    <script>
+        $('document').ready(function () {
+            $('#save_change').click(function () {
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var password_confirm = $('#password_confirm').val();
+                if (password !== password_confirm)
+                {
+                    $('#password_error').css('display', 'block');
+                }
+                else if (name.length === 0 || email.length === 0 || !email.includes('@'))
+                {
+                    $('#info_error').css('display', 'block');
+                }
+                else
+                {
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{url('/user/edit_profile')}}",
+                        data:{
+                            'name': name,
+                            'email' : email,
+                            'password': password,
+                        },
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 
 @endsection

@@ -22,6 +22,7 @@
                                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                     <tr>
+                                        <th class="wd-10p">ID</th>
                                         <th class="wd-10p">ニックネーム</th>
                                         <th class="wd-15p">メールアドレス</th>
                                         <th class="wd-20p">登録日付</th>
@@ -31,19 +32,21 @@
                                     <tbody>
                                     @foreach ($users as $user)
                                         <tr id="{{$user->name}}">
+                                            <td>{{$user->id}}</td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->created_at}}</td>
-                                            <td>
-                                                @if ($user->admin_check == 0)
+                                            @if ($user->admin_check == 0)
+                                                <td style="color: red;">
                                                     新しく登録されたユーザー
                                                     <input id="{{$user->id}}" type="button" class="btn btn-primary" style="float: right;" value="認証">
-                                                @else
+                                                </td>
+                                            @else
+                                                <td>
                                                     認証されたユーザー
                                                     <input type="button" class="btn btn-primary" style="float: right;" value="認証" disabled>
-                                                @endif
-
-                                            </td>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -57,12 +60,14 @@
                 </div>
             </div>
         </div>
+    </div>
 
 @endsection
 
 @section('page-js')
     <script>
         $('document').ready(function () {
+            $('#example_filter').css('display', 'none');
             $("input").click(function(e){
                 var idClicked = e.target.id;
                 $.ajax({

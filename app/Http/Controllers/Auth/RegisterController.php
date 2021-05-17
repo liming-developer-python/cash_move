@@ -97,6 +97,11 @@ class RegisterController extends Controller
             'admin_check' => 0,
         ]);
 
+        DB::table('account') -> insert([
+            'user_id' => $userID,
+            'point' => 0,
+        ]);
+
         return view('auth.register_success');
     }
 }

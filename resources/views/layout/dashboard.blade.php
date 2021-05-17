@@ -82,13 +82,16 @@
         <aside class="app-sidebar ">
             <ul class="side-menu">
                 <li>
-                    <a class="side-menu__item" href=""><i class="side-menu__icon fa fa-user-circle"></i><span class="side-menu__label">使用者</span></a>
+                    <a class="side-menu__item" href="{{url('/admin/dash')}}"><i class="side-menu__icon fa fa-user-circle"></i><span class="side-menu__label">使用者</span></a>
                 </li>
                 <li>
-                    <a class="side-menu__item" href=""><i class="side-menu__icon fa fa-bank"></i><span class="side-menu__label">口座</span></a>
+                    <a class="side-menu__item" href="{{url('/admin/account')}}"><i class="side-menu__icon fa fa-bank"></i><span class="side-menu__label">口座</span></a>
                 </li>
                 <li>
-                    <a class="side-menu__item" href=""><i class="side-menu__icon fa fa-group"></i><span class="side-menu__label">グループ</span></a>
+                    <a class="side-menu__item" href="{{url('/admin/history')}}"><i class="side-menu__icon fa fa-area-chart"></i><span class="side-menu__label">移送履歴</span></a>
+                </li>
+                <li>
+                    <a class="side-menu__item" href="{{url('/admin/group')}}"><i class="side-menu__icon fa fa-group"></i><span class="side-menu__label">グループ</span></a>
                 </li>
             </ul>
         </aside>
@@ -110,6 +113,8 @@
     <a href="#top" id="back-to-top" style="display: inline;"><i class="fa fa-angle-up"></i></a>
     <script src="{{asset('admin/js/vendors/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('admin/js/vendors/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('admin/js/vendors/jquery.sparkline.min.js')}}"></script>
+    <script src="{{asset('admin/js/vendors/jquery.tablesorter.min.js')}}"></script>
     <script src="{{asset('admin/js/vendors/selectize.min.js')}}"></script>
     <script src="{{asset('admin/js/vendors/circle-progress.min.js')}}"></script>
     <script src="{{asset('admin/plugins/rating/jquery.rating-stars.js')}}"></script>

@@ -1,11 +1,11 @@
 (function($) {
     "use strict";
-	
+
 // ______________ PAGE LOADING
 	$(window).on("load", function(e) {
 		$("#global-loader").fadeOut("slow");
 	})
-	
+
 	// ______________ BACK TO TOP BUTTON
 
 	$(window).on("scroll", function(e) {
@@ -22,7 +22,7 @@
         }, 600);
         return false;
     });
-	
+
 	var ratingOptions = {
 		selectors: {
 			starsSelector: '.rating-stars',
@@ -33,7 +33,7 @@
 			targetFormElementSelector: '.rating-value'
 		}
 	};
-	$(".rating-stars").ratingStars(ratingOptions);
+	// $(".rating-stars").ratingStars(ratingOptions);
 	$(".vscroll").mCustomScrollbar();
 	$(".app-sidebar").mCustomScrollbar({
 		theme:"minimal",
@@ -55,7 +55,7 @@
 			});
 		});
 	  }
-})(jQuery);	
+})(jQuery);
 
 $(function(e) {
 		  /** Constant div card */
@@ -95,5 +95,5 @@ $(function(e) {
 		return false;
 	  });
   });
-  
-  
+
+
