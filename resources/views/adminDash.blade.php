@@ -27,6 +27,7 @@
                                         <th class="wd-15p">メールアドレス</th>
                                         <th class="wd-20p">登録日付</th>
                                         <th class="wd-15p">承認の可否</th>
+                                        <th class="wd-15p">削除</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -39,14 +40,17 @@
                                             @if ($user->admin_check == 0)
                                                 <td style="color: red;">
                                                     新しく登録されたユーザー
-                                                    <input id="{{$user->id}}" type="button" class="btn btn-primary" style="float: right;" value="認証">
+                                                    <input id="{{$user->id}}" type="button" class="btn btn-primary verify_btn" style="float: right;" value="認証">
                                                 </td>
                                             @else
                                                 <td>
                                                     認証されたユーザー
-                                                    <input type="button" class="btn btn-primary" style="float: right;" value="認証" disabled>
+                                                    <input type="button" class="btn btn-primary verify_btn" style="float: right;" value="認証" disabled>
                                                 </td>
                                             @endif
+                                            <td>
+                                                <input id="{{$user->id}}" type="button" class="btn btn-primary delete_btn" style="float: right;" value="削除">
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -66,20 +70,31 @@
 
 @section('page-js')
     <script>
-        $('document').ready(function () {
-            $('#example_filter').css('display', 'none');
-            $("input").click(function(e){
-                var idClicked = e.target.id;
-                $.ajax({
-                    type: 'POST',
-                    url: "{{url('admin/user_check')}}",
-                    data:{
-                        'user_id': idClicked,
-                    },
-                    success: function () {
-                        location.reload();
-                    }
-                });
+        $(".verify_btn").click(function(e){
+            var idClicked = e.target.id;
+            $.ajax({
+                type: 'POST',
+                url: "{{url('admin/user_check')}}",
+                data:{
+                    'user_id': idClicked,
+                },
+                success: function () {
+                    location.reload();
+                }
+            });
+        });
+
+        $(".delete_btn").click(function(e){
+            var idClicked = e.target.id;
+            $.ajax({
+                type: 'POST',
+                url: "{{url('admin/user_delete')}}",
+                data:{
+                    'user_id': idClicked,
+                },
+                success: function () {
+                    location.reload();
+                }
             });
         });
     </script>

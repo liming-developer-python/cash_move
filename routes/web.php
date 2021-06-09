@@ -34,6 +34,7 @@ Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 // Admin Dashboard
 Route::get('/admin/dash', [AdminController::class, 'showUser'])->name('admin.dash')->middleware('is_admin');
 Route::post('/admin/user_check', [AdminController::class, 'userCheck'])->middleware('is_admin');
+Route::post('/admin/user_delete', [AdminController::class, 'userDelete'])->middleware('is_admin');
 Route::get('/admin/account', [AdminController::class, 'showAccount'])->middleware('is_admin');
 Route::post('/admin/create_account', [AdminController::class, 'createAccount'])->middleware('is_admin');
 Route::post('/admin/account_add_point', [AdminController::class, 'accountAddPoint'])->middleware('is_admin');

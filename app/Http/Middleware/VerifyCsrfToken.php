@@ -23,6 +23,7 @@ class VerifyCsrfToken extends Middleware
         '/admin/delete_user_group',
         '/admin/delete_group',
         '/admin/group_add_point',
-        '/admin/create_account'
+        '/admin/create_account',
+        '/admin/user_delete'
     ];
 }

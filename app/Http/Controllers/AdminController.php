@@ -28,6 +28,24 @@ class AdminController extends Controller
         return True;
     }
 
+    public function userDelete(Request $request)
+    {
+        $user_id = $request['user_id'];
+        DB::table('users')
+            ->where('id', $user_id)
+            ->delete();
+        DB::table('user_info')
+            ->where('user_id', $user_id)
+            ->delete();
+        DB::table('account')
+            ->where('user_id', $user_id)
+            ->delete();
+        DB::table('user_group')
+            ->where('user_id', $user_id)
+            ->delete();
+        return True;
+    }
+
     public function showAccount()
     {
         $account_info = DB::table('account')
