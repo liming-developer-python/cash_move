@@ -11,8 +11,8 @@
             <div class="row">
                 <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
                     <div class="contents">
-                        <h2 class="head-title">地域通貨（ポイント）<br>運用ソフト</h2>
-                        <p style="font-size: 1vw; color: black;">ここに何と書くのか教えてください。</p>
+                        <h2 class="head-title">GNcoin</h2>
+                        <p style="font-size: 1vw; color: black;"></p>
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
@@ -29,7 +29,7 @@
     <section id="services" class="section-padding">
         <div class="container">
             <div class="section-header text-center">
-                <h2 class="section-title wow fadeInDown" data-wow-delay="0.3s">機能</h2>
+                <h2 class="section-title wow fadeInDown" data-wow-delay="0.3s">Options</h2>
                 <div class="shape wow fadeInDown" data-wow-delay="0.3s"></div>
             </div>
             <div class="row">
@@ -40,8 +40,8 @@
                             <i class="lni-cog"></i>
                         </div>
                         <div class="services-content">
-                            <h3><a>私のプロフィール</a></h3>
-                            <p style="font-size: 0.8vw; color: black;">自分のアカウントを調べてみてください。 </p>
+                            <h3><a>My Profile</a></h3>
+                            <p style="font-size: 0.8vw; color: black;">You can check your profile. </p>
                         </div>
                     </div>
                 </div>
@@ -52,8 +52,8 @@
                             <i class="lni-stats-up"></i>
                         </div>
                         <div class="services-content">
-                            <h3><a>私の口座</a></h3>
-                            <p style="font-size: 0.8vw; color: black;">自分の口座をよく見てください。 </p>
+                            <h3><a>My account</a></h3>
+                            <p style="font-size: 0.8vw; color: black;">You can check your account. </p>
                         </div>
                     </div>
                 </div>
@@ -64,8 +64,8 @@
                             <i class="lni-users"></i>
                         </div>
                         <div class="services-content">
-                            <h3><a>私のグループ</a></h3>
-                            <p style="font-size: 0.8vw; color: black;">自分の属するグループをよく見てください。 </p>
+                            <h3><a>My Group</a></h3>
+                            <p style="font-size: 0.8vw; color: black;">You can get money in group. </p>
                         </div>
                     </div>
                 </div>
@@ -83,11 +83,11 @@
                     <div class="about-wrapper wow fadeInLeft" data-wow-delay="0.3s">
                         <div>
                             <div class="site-heading">
-                                <h2 class="section-title">簡単な説明を書きましょう。</h2>
+                                <h2 class="section-title">here is a description what you want</h2>
                             </div>
                             <div class="content">
                                 <p style="font-size: 1vw; color: black;">
-                                    何て書くのか教えてください。
+                                    here is a description what you want
                                 </p>
                             </div>
                         </div>
@@ -100,13 +100,13 @@
                         <div>
                             <div class="site-heading">
 {{--                                <p class="mb-3">Manage Statistics</p>--}}
-                                <h2 class="section-title">何て書くのか教えてください。</h2>
+                                <h2 class="section-title">here is a description what you want</h2>
                             </div>
                             <div class="content">
                                 <p style="font-size: 1vw; color: black;">
-                                    何て書くのか教えてください。
+                                    here is a description what you want
                                 </p>
-                                <a href="#" class="btn btn-common mt-3" style="font-size: 0.9vw; color: black;">もっと見る</a>
+                                <a href="#" class="btn btn-common mt-3" style="font-size: 0.9vw; color: black;">here is a description what you want</a>
                             </div>
                         </div>
                     </div>

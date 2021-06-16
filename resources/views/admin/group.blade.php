@@ -11,24 +11,24 @@
                 <div class="col-sm-12 col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">グループ管理</h3>
+                            <h3 class="card-title">Groups</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-3">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">グループ創造</button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Create New Group</button>
                                 </div>
                                 <div class="col-7">
                                     <div style="display: flex;">
-                                        <label class="col-md-4 col-form-label text-md-right">グループにポイント追加: </label>
+                                        <label class="col-md-4 col-form-label text-md-right">Add pts to Group: </label>
                                         <input type="number" id="multi_point" class="form-control" step=".01" style="margin-left: 1vw;">
                                         <select class="form-control custom-select" id="multi_way" style="margin-left: 1vw;">
-                                            <option value="0">-- 追加方式 --</option>
+                                            <option value="0">-- pts way --</option>
                                             <option value="1">pts</option>
                                             <option value="2">%</option>
                                         </select>
-                                        <input type="button" id="multi_add" class="btn btn-primary btn-block" value="ポイント追加" style="margin-left: 1vw;">
+                                        <input type="button" id="multi_add" class="btn btn-primary btn-block" value="Add pts" style="margin-left: 1vw;">
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <select class="form-control custom-select" id="group_list" multiple style="height: 60vh;" onclick="showGroupMembers(this)">
-                                        <option value="0">-- グループリスト --</option>
+                                        <option value="0">-- Groups --</option>
                                         @foreach($groups as $group)
                                             <option value="{{$group->id}}">{{$group->group_name}}</option>
                                         @endforeach
@@ -45,12 +45,12 @@
                                 </div>
                                 <div class="col-4">
                                     <select class="form-control custom-select" id="member_list" multiple style="height: 60vh;">
-                                        <option value="0">-- メンバーリスト --</option>
+                                        <option value="0">-- members --</option>
                                     </select>
                                 </div>
                                 <div class="col-4">
                                     <select class="form-control custom-select" id="user_list" multiple style="height: 60vh;">
-                                        <option value="0">-- ユーザーリスト --</option>
+                                        <option value="0">-- users --</option>
                                         @foreach($users as $user)
                                             <option value="{{$user->user_id}}">{{$user->name}}</option>
                                         @endforeach
@@ -59,13 +59,13 @@
                             </div>
                             <div class="row" style="margin-top: 3vh;">
                                 <div class="col-4">
-                                    <button type="button" class="btn btn-primary" style="margin-left: 30%;" id="delete_group">グループ削除</button>
+                                    <button type="button" class="btn btn-primary" style="margin-left: 30%;" id="delete_group">Remove Group</button>
                                 </div>
                                 <div class="col-4">
-                                    <button type="button" class="btn btn-primary" style="margin-left: 30%;" id="delete_user_group">グループから削除</button>
+                                    <button type="button" class="btn btn-primary" style="margin-left: 30%;" id="delete_user_group">Remove member</button>
                                 </div>
                                 <div class="col-4">
-                                    <button type="button" class="btn btn-primary" style="margin-left: 30%;" id="add_user_group">グループに追加</button>
+                                    <button type="button" class="btn btn-primary" style="margin-left: 30%;" id="add_user_group">Add to Group</button>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">グループ創造</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Create a new Group</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -90,15 +90,15 @@
                         <div class="col-md-2 col-lg-2"></div>
                         <div class="col-md-8 col-lg-8">
                             <div class="form-group">
-                                <label class="form-label">グループ名を入力してください。</label>
-                                <input type="text" id="create_group_name" class="form-control" name="example-text-input" placeholder="グループ名">
+                                <label class="form-label">Please input group name。</label>
+                                <input type="text" id="create_group_name" class="form-control" name="example-text-input" placeholder="group name">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                    <button type="button" id="create_group" class="btn btn-primary">保管</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="create_group" class="btn btn-primary">Create</button>
                 </div>
             </div>
         </div>
@@ -122,11 +122,11 @@
                     'id': group_id,
                 },
                 success: function (member_list) {
-                    $('#user_list').find('option').remove().end().append('<option value="0">-- ユーザーリスト --</option>').val(0);
+                    $('#user_list').find('option').remove().end().append('<option value="0">-- users --</option>').val(0);
                     @foreach($users as $user)
                         $('#user_list').append($("<option></option>").attr('value', '{{$user->id}}').text('{{$user->name}}'));
                     @endforeach
-                    $('#member_list').find('option').remove().end().append('<option value="0">-- メンバーリスト --</option>').val(0);
+                    $('#member_list').find('option').remove().end().append('<option value="0">-- members --</option>').val(0);
                     $.map(member_list, function(val, key) {
                         $('#member_list').append($("<option></option>").attr('value', val['id']).text(val['name']));
                         $("#user_list option[value='" + val['id'] + "']").remove();
@@ -140,7 +140,7 @@
                 var create_group_name = $('#create_group_name').val();
                 if (create_group_name == '')
                 {
-                    alert('グループ名を入力してください。');
+                    alert('Please input group name。');
                     return;
                 }
                 $.ajax({
@@ -215,7 +215,7 @@
             });
 
             $('#delete_group').click(function () {
-                var r = confirm("選択したグループを削除しますか？");
+                var r = confirm("Remove Selected Group");
                 if (r == false)
                 {
                     return;
@@ -259,17 +259,17 @@
             function call_ajax() {
                 if (add_method == 0)
                 {
-                    alert('ポイント追加方式を選択してください。');
+                    alert('Please select how to add pts。');
                     return ;
                 }
                 if (point_value == '' || point_value == 0)
                 {
-                    alert('追加するポイント量を正確に入力してください。');
+                    alert('Please input pts value。');
                     return ;
                 }
                 if (user_list.length == 0)
                 {
-                    alert('ポイントを追加する口座をお選びください。');
+                    alert('Please select user。');
                     return ;
                 }
 

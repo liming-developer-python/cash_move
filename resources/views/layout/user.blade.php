@@ -13,7 +13,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
-    <title>地域通貨</title>
+    <title>GNcoin</title>
 
     <link rel="stylesheet" href="{{asset('admin/fonts/fonts/font-awesome.min.css')}}">
 

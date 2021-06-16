@@ -13,19 +13,19 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title" style="font-size: 1vw; color: #0c85d0;">
-                                    口座 ID : {{$account->id}}
+                                    Account ID : {{$account->id}}
                                 </div>
                             </div>
                             <div class="card-body text-center">
-                                <h5 style="color: #0c85d0;">ポイント在庫量</h5>
+                                <h5 style="color: #0c85d0;">Amounts</h5>
                                 <h2 class="counter" id="{{'amount_' . $account->id}}"> {{$account->point}}</h2>
                                 <div class="row" style="padding-top: 3vh;">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <label class="form-label" style="color: #0c85d0;">ユーザーリスト</label>
+                                            <label class="form-label" style="color: #0c85d0;">Users</label>
                                             <select class="form-control custom-select" id="{{'user_' . $account->id}}" onchange="getAccountList(this)">
-                                                <option value="0">-- ニックネーム --</option>
+                                                <option value="0">-- nickname --</option>
                                                 @foreach($user_list as $user)
                                                     <option value="{{$user->id}}">{{$user->name}}</option>
                                                 @endforeach
@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <label class="form-label" style="color: #0c85d0;">口座 ID</label>
+                                            <label class="form-label" style="color: #0c85d0;">Account ID</label>
                                             <select class="form-control custom-select" id="{{'account_' . $account->id}}">
                                                 <option value="0">-- ID --</option>
                                             </select>
@@ -45,14 +45,14 @@
                                     <div class="col-md-1"></div>
                                     <div class="col-sm-6 col-md-5">
                                         <div class="form-group">
-                                            <label class="form-label" style="color: #0c85d0;">移送するポイント量</label>
-                                            <input type="number" class="form-control" placeholder="ポイント" id="{{'point_' . $account->id}}" step=".01">
+                                            <label class="form-label" style="color: #0c85d0;">Send Amount</label>
+                                            <input type="number" class="form-control" placeholder="pts" id="{{'point_' . $account->id}}" step=".01">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-5">
                                         <div class="form-group">
-                                            <label class="form-label" style="color: #0c85d0;">ご確認の上、クリック</label>
-                                            <input type="button" class="btn btn-primary" value="移送" id="{{'transfer_' . $account->id}}" onclick="sendInfo(this)">
+                                            <label class="form-label" style="color: #0c85d0;">Please check again before send.</label>
+                                            <input type="button" class="btn btn-primary" value="Send" id="{{'transfer_' . $account->id}}" onclick="sendInfo(this)">
                                         </div>
                                     </div>
                                 </div>

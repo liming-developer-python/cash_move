@@ -27,7 +27,7 @@ class AdminController extends Controller
             ]);
         return True;
     }
-
+    
     public function userDelete(Request $request)
     {
         $user_id = $request['user_id'];

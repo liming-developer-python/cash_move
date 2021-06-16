@@ -8,7 +8,7 @@
     <div class="app-content my-3 my-md-5">
         <div class="side-app">
             <div class="page-header">
-                <h4 class="page-title">送り履歴</h4>
+                <h4 class="page-title">Movement History</h4>
             </div>
             <div class="row">
                 <div class="col-md-12 col-lg-12">
@@ -21,10 +21,10 @@
                                     <thead>
                                     <tr>
                                         <th class="wd-20p">ID</th>
-                                        <th class="wd-20p">送り口座ID</th>
-                                        <th class="wd-15p">受取り口座ID</th>
-                                        <th class="wd-20p">移送量</th>
-                                        <th class="wd-20p">移送時間</th>
+                                        <th class="wd-20p">Sender ID</th>
+                                        <th class="wd-15p">Receiver ID</th>
+                                        <th class="wd-20p">Amount</th>
+                                        <th class="wd-20p">Send Time</th>
                                     </tr>
                                     </thead>
                                     <tbody>

@@ -15,7 +15,7 @@
     <link rel="icon" href="{{ asset('img/logo.jpg') }}" type="image/icon type">
 
     <!-- Title -->
-    <title>地域通貨</title>
+    <title>GNcoin</title>
     <link rel="stylesheet" href="{{asset('admin/fonts/fonts/font-awesome.min.css')}}">
 
     <!-- Font Family -->
@@ -54,7 +54,7 @@
             <div class="container-fluid">
                 <div class="d-flex">
                     <a class="header-brand" href="">
-                        <span style="color: white;">ダッシュボード</span>
+                        <span style="color: white;">Dashboard</span>
 {{--                        <img alt="vobilet logo" class="header-brand-img" src="{{asset('admin/images/brand/logo.png')}}">--}}
                     </a>
 
@@ -66,12 +66,12 @@
                             <a class="nav-link pr-0 leading-none d-flex" data-toggle="dropdown" href="#">
                                 <span class="avatar avatar-md brround" style="background-image: url({{asset('admin/images/contrast.svg')}})"></span>
                                 <span class="ml-2 d-none d-lg-block">
-                                    <span class="text-white">管理者</span>
+                                    <span class="text-white">Admin</span>
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                <a class="dropdown-item" href="{{url('/')}}"><i class="dropdown-icon mdi mdi-home-circle"></i> ホーム</a>
-                                <a class="dropdown-item" href="{{url('/logout')}}"><i class="dropdown-icon mdi mdi-logout"></i> ログアウト</a>
+                                <a class="dropdown-item" href="{{url('/')}}"><i class="dropdown-icon mdi mdi-home-circle"></i> Home</a>
+                                <a class="dropdown-item" href="{{url('/logout')}}"><i class="dropdown-icon mdi mdi-logout"></i> Logout</a>
                             </div>
                         </div>
                     </div>
@@ -82,16 +82,16 @@
         <aside class="app-sidebar ">
             <ul class="side-menu">
                 <li>
-                    <a class="side-menu__item" href="{{url('/admin/dash')}}"><i class="side-menu__icon fa fa-user-circle"></i><span class="side-menu__label">使用者</span></a>
+                    <a class="side-menu__item" href="{{url('/admin/dash')}}"><i class="side-menu__icon fa fa-user-circle"></i><span class="side-menu__label">Users</span></a>
                 </li>
                 <li>
-                    <a class="side-menu__item" href="{{url('/admin/account')}}"><i class="side-menu__icon fa fa-bank"></i><span class="side-menu__label">口座</span></a>
+                    <a class="side-menu__item" href="{{url('/admin/account')}}"><i class="side-menu__icon fa fa-bank"></i><span class="side-menu__label">Accounts</span></a>
                 </li>
                 <li>
-                    <a class="side-menu__item" href="{{url('/admin/history')}}"><i class="side-menu__icon fa fa-area-chart"></i><span class="side-menu__label">移送履歴</span></a>
+                    <a class="side-menu__item" href="{{url('/admin/history')}}"><i class="side-menu__icon fa fa-area-chart"></i><span class="side-menu__label">Point Movement History</span></a>
                 </li>
                 <li>
-                    <a class="side-menu__item" href="{{url('/admin/group')}}"><i class="side-menu__icon fa fa-group"></i><span class="side-menu__label">グループ</span></a>
+                    <a class="side-menu__item" href="{{url('/admin/group')}}"><i class="side-menu__icon fa fa-group"></i><span class="side-menu__label">Groups</span></a>
                 </li>
             </ul>
         </aside>

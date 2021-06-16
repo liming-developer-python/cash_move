@@ -9,13 +9,13 @@
     <div class="app-content my-3 my-md-5">
         <div class="side-app">
             <div class="page-header">
-                <h4 class="page-title">ユーザーリスト</h4>
+                <h4 class="page-title">Users</h4>
             </div>
             <div class="row">
                 <div class="col-md-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">新しく登録されたユーザーをチェックして認証してください。</div>
+                            <div class="card-title">Please check and verify new registered users.</div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -23,33 +23,33 @@
                                     <thead>
                                     <tr>
                                         <th class="wd-10p">ID</th>
-                                        <th class="wd-10p">ニックネーム</th>
-                                        <th class="wd-15p">メールアドレス</th>
-                                        <th class="wd-20p">登録日付</th>
-                                        <th class="wd-15p">承認の可否</th>
-                                        <th class="wd-15p">削除</th>
+                                        <th class="wd-10p">NickName</th>
+                                        <th class="wd-15p">Email</th>
+                                        <th class="wd-20p">Registration Date</th>
+                                        <th class="wd-15p">Verify</th>
+                                        <th class="wd-15p">Remove User</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach ($users as $user)
                                         <tr id="{{$user->name}}">
-                                            <td>{{$user->id}}</td>
+                                            <td>{{ $loop->index + 1}}</td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->created_at}}</td>
                                             @if ($user->admin_check == 0)
                                                 <td style="color: red;">
-                                                    新しく登録されたユーザー
-                                                    <input id="{{$user->id}}" type="button" class="btn btn-primary verify_btn" style="float: right;" value="認証">
+                                                    New User
+                                                    <input id="{{$user->id}}" type="button" class="btn btn-primary verify_btn" style="float: right;" value="Verify">
                                                 </td>
                                             @else
                                                 <td>
-                                                    認証されたユーザー
-                                                    <input type="button" class="btn btn-primary verify_btn" style="float: right;" value="認証" disabled>
+                                                    Verified User
+                                                    <input type="button" class="btn btn-primary verify_btn" style="float: right;" value="Verify" disabled>
                                                 </td>
                                             @endif
                                             <td>
-                                                <input id="{{$user->id}}" type="button" class="btn btn-primary delete_btn" style="float: right;" value="削除">
+                                                <input id="{{$user->id}}" type="button" class="btn btn-primary delete_btn" style="float: right;" value="Delete">
                                             </td>
                                         </tr>
                                     @endforeach
@@ -85,17 +85,20 @@
         });
 
         $(".delete_btn").click(function(e){
-            var idClicked = e.target.id;
-            $.ajax({
-                type: 'POST',
-                url: "{{url('admin/user_delete')}}",
-                data:{
-                    'user_id': idClicked,
-                },
-                success: function () {
-                    location.reload();
-                }
-            });
+            var deleteCheck = confirm("Do you really want to delete the selected user?");
+            if (deleteCheck) {
+                var idClicked = e.target.id;
+                $.ajax({
+                    type: 'POST',
+                    url: "{{url('admin/user_delete')}}",
+                    data:{
+                        'user_id': idClicked,
+                    },
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            }
         });
     </script>
 

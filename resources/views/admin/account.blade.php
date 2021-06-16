@@ -8,7 +8,7 @@
     <div class="app-content my-3 my-md-5">
         <div class="side-app">
             <div class="page-header">
-                <h4 class="page-title">口座リスト</h4>
+                <h4 class="page-title">Accounts</h4>
             </div>
             <div class="row">
                 <div class="col-md-12 col-lg-12">
@@ -17,22 +17,22 @@
                             <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-3">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">新しい口座作成</button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Create new account</button>
                                 </div>
                                 <div class="col-7">
                                     <div style="display: flex;">
-                                        <label class="col-md-4 col-form-label text-md-right">マルチ追加: </label>
+                                        <label class="col-md-4 col-form-label text-md-right">Multi-Add: </label>
                                         <input type="number" id="multi_point" class="form-control" step=".01" style="margin-left: 1vw;">
                                         <select class="form-control custom-select" id="multi_way" style="margin-left: 1vw;">
-                                            <option value="0">-- 追加方式 --</option>
+                                            <option value="0">-- pts way --</option>
                                             <option value="1">pts</option>
                                             <option value="2">%</option>
                                         </select>
-                                        <input type="button" id="multi_add" class="btn btn-primary btn-block" value="ポイント追加" style="margin-left: 1vw;">
+                                        <input type="button" id="multi_add" class="btn btn-primary btn-block" value="Add pts" style="margin-left: 1vw;">
                                     </div>
                                 </div>
                             </div>
-{{--                            <div class="card-title">マルチ追加: </div>--}}
+{{--                            <div class="card-title">Multi-Add: </div>--}}
 {{--                            <div style="display: flex;">--}}
 {{--                                <input type="number" id="multi_point" class="form-control" step=".01" style="margin-left: 1vw; max-width: 15vw;">--}}
 {{--                                <select class="form-control custom-select" id="multi_way" style="margin-left: 1vw; max-width: 10vw;">--}}
@@ -49,11 +49,11 @@
                                     <thead>
                                     <tr>
                                         <th class="wd-20p"></th>
-                                        <th class="wd-20p">ユーザーID</th>
-                                        <th class="wd-20p">ニックネーム</th>
-                                        <th class="wd-15p">口座ID</th>
-                                        <th class="wd-20p">再考</th>
-                                        <th class="wd-20p">ポイント追加</th>
+                                        <th class="wd-20p">User ID</th>
+                                        <th class="wd-20p">Nickname</th>
+                                        <th class="wd-15p">Account ID</th>
+                                        <th class="wd-20p">pts</th>
+                                        <th class="wd-20p">Add pts</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -72,11 +72,11 @@
                                             <td style="display: flex;">
                                                 <input type="number" id="{{'point_' . $account->id}}" class="form-control" step=".01" style="margin-left: 1vw; max-width: 15vw;">
                                                 <select class="form-control custom-select" id="{{'way_' . $account->id}}" style="margin-left: 1vw; max-width: 10vw;">
-                                                    <option value="0">-- 追加方式 --</option>
+                                                    <option value="0">-- pts way --</option>
                                                     <option value="1">pts</option>
                                                     <option value="2">%</option>
                                                 </select>
-                                                <input type="button" id="{{'add_' . $account->id}}" class="btn btn-primary btn-block" value="ポイント追加" style="margin-left: 1vw; max-width: 10vw;">
+                                                <input type="button" id="{{'add_' . $account->id}}" class="btn btn-primary btn-block" value="Add pts" style="margin-left: 1vw; max-width: 10vw;">
                                             </td>
                                         </tr>
                                     @endforeach
@@ -98,7 +98,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">新しい口座作成</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">New Account</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -108,9 +108,9 @@
                         <div class="col-md-1 col-lg-1"></div>
                         <div class="col-md-10 col-lg-10">
                             <div class="form-group">
-                                <label class="form-label">口座をご利用するユーザーを選択してください。</label>
+                                <label class="form-label">Please select user。</label>
                                 <select class="form-control custom-select" id="user_list">
-                                    <option value="0">-- ユーザーリスト --</option>
+                                    <option value="0">-- nickname --</option>
                                     @foreach($users as $user)
                                         <option value="{{$user->user_id}}">{{$user->name}}</option>
                                     @endforeach
@@ -120,8 +120,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                    <button type="button" id="create_account" class="btn btn-primary">口座作成</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="create_account" class="btn btn-primary">Create</button>
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@
                 var account_user_id = $('#user_list').val();
                 if (account_user_id == 0)
                 {
-                    alert('口座をご利用するユーザーを選択してください。');
+                    alert('Please select user first。');
                     return;
                 }
                 $.ajax({
@@ -179,17 +179,17 @@
             function call_ajax() {
                 if (add_method == 0)
                 {
-                    alert('ポイント追加方式を選択してください。');
+                    alert('Please select how to add pts。');
                     return ;
                 }
                 if (point_value == '' || point_value == 0)
                 {
-                    alert('追加するポイント量を正確に入力してください。');
+                    alert('Please type pts value。');
                     return ;
                 }
                 if (account_list.length == 0)
                 {
-                    alert('ポイントを追加する口座をお選びください。');
+                    alert('Please select account。');
                     return ;
                 }
 
