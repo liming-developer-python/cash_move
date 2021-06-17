@@ -27,7 +27,7 @@ class AdminController extends Controller
             ]);
         return True;
     }
-    
+
     public function userDelete(Request $request)
     {
         $user_id = $request['user_id'];
@@ -64,13 +64,53 @@ class AdminController extends Controller
 
     public function createAccount(Request $request)
     {
+        $digit = $this->createAccountID();
         $user_id = $request['user_id'];
         DB::table('account')
             ->insert([
                 'user_id'       =>  $user_id,
-                'point'         =>  0
+                'point'         =>  0,
+                'account_id'    =>  $digit,
             ]);
         return true;
+    }
+
+    public function createAccountID()
+    {
+        $accounts = DB::table('account')
+            ->select('account_id')
+            ->get();
+        $accounts -> transform(function($i) {
+            return (array)$i;
+        });
+        $array = $accounts -> toArray();
+        $digit_number = rand(100000, 999999);
+        while ($this->checkDigitNumber($digit_number, $array))
+        {
+            $digit_number = rand(100000, 999999);
+        }
+        return $digit_number;
+    }
+
+    public function checkDigitNumber($digit_number, $db_array)
+    {
+        $check_val = 0;
+        for ($i = 0; $i < count($db_array); $i ++)
+        {
+            if ($digit_number == $db_array[$i]['account_id'])
+            {
+                $check_val = 1;
+                break;
+            }
+        }
+        if ($check_val == 0)
+        {
+            return True;
+        }
+        else
+        {
+            return False;
+        }
     }
 
     public function accountAddPoint(Request $request)

@@ -55,15 +55,15 @@
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Accounts</h3>
+                            <h3 class="card-title">Transfer History</h3>
                         </div>
-                        @foreach( $account as $detail )
+                        @foreach( $history as $detail )
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-box tilebox-one">
                                         <i class="icon-layers float-right text-muted"><i class="fa fa-bar-chart text-secondary" aria-hidden="true"></i></i>
-                                        <a href=""> <h6 class="text-drak text-uppercase mt-0">Account ID : {{$detail->id}}</h6> </a>
-                                        <h2 class="m-b-20">{{$detail->point}}</h2>
+                                        <h6 class="text-drak text-uppercase mt-0" style="color: #007bff;">Account ID : {{$detail->receiver}}</h6>
+                                        <h2 class="m-b-20">{{$detail->amount}}</h2>
                                     </div>
                                 </div>
                             </div>

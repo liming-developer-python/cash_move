@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Cassandra\Exception\TruncateException;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use function PHPUnit\Framework\countOf;
 
 class RegisterController extends Controller
 {
@@ -97,11 +99,51 @@ class RegisterController extends Controller
             'admin_check' => 0,
         ]);
 
+        $digit = $this->createAccountID();
         DB::table('account') -> insert([
             'user_id' => $userID,
             'point' => 0,
+            'account_id' => $digit,
         ]);
 
         return view('auth.register_success');
+    }
+
+    public function createAccountID()
+    {
+        $accounts = DB::table('account')
+            ->select('account_id')
+            ->get();
+        $accounts -> transform(function($i) {
+            return (array)$i;
+        });
+        $array = $accounts -> toArray();
+        $digit_number = rand(100000, 999999);
+        while ($this->checkDigitNumber($digit_number, $array))
+        {
+            $digit_number = rand(100000, 999999);
+        }
+        return $digit_number;
+    }
+
+    public function checkDigitNumber($digit_number, $db_array)
+    {
+        $check_val = 0;
+        for ($i = 0; $i < count($db_array); $i ++)
+        {
+            if ($digit_number == $db_array[$i]['account_id'])
+            {
+                $check_val = 1;
+                break;
+            }
+        }
+        if ($check_val == 0)
+        {
+            return True;
+        }
+        else
+        {
+            return False;
+        }
     }
 }

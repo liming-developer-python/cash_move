@@ -13,46 +13,35 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title" style="font-size: 1vw; color: #0c85d0;">
-                                    Account ID : {{$account->id}}
+                                    Account ID : {{$account->account_id}}
                                 </div>
                             </div>
                             <div class="card-body text-center">
                                 <h5 style="color: #0c85d0;">Amounts</h5>
-                                <h2 class="counter" id="{{'amount_' . $account->id}}"> {{$account->point}}</h2>
+                                <h2 class="counter" id="{{'amount_' . $account->account_id}}"> {{$account->point}}</h2>
                                 <div class="row" style="padding-top: 3vh;">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <label class="form-label" style="color: #0c85d0;">Users</label>
-                                            <select class="form-control custom-select" id="{{'user_' . $account->id}}" onchange="getAccountList(this)">
-                                                <option value="0">-- nickname --</option>
-                                                @foreach($user_list as $user)
-                                                    <option value="{{$user->id}}">{{$user->name}}</option>
-                                                @endforeach
-                                            </select>
+                                            <label class="form-label" style="color: #0c85d0;">Receiver ID</label>
+                                            <input type="number" class="form-control" placeholder="Account ID" id="{{'account_' . $account->account_id}}" step=".01">
                                         </div>
                                     </div>
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <label class="form-label" style="color: #0c85d0;">Account ID</label>
-                                            <select class="form-control custom-select" id="{{'account_' . $account->id}}">
-                                                <option value="0">-- ID --</option>
-                                            </select>
+                                            <label class="form-label" style="color: #0c85d0;">Send Amount</label>
+                                            <input type="number" class="form-control" placeholder="pts" id="{{'point_' . $account->account_id}}" step=".01">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row" style="padding-top: 3vh;">
                                     <div class="col-md-1"></div>
                                     <div class="col-sm-6 col-md-5">
-                                        <div class="form-group">
-                                            <label class="form-label" style="color: #0c85d0;">Send Amount</label>
-                                            <input type="number" class="form-control" placeholder="pts" id="{{'point_' . $account->id}}" step=".01">
-                                        </div>
                                     </div>
                                     <div class="col-sm-6 col-md-5">
                                         <div class="form-group">
                                             <label class="form-label" style="color: #0c85d0;">Please check again before send.</label>
-                                            <input type="button" class="btn btn-primary" value="Send" id="{{'transfer_' . $account->id}}" onclick="sendInfo(this)">
+                                            <input type="button" class="btn btn-primary" value="Send" id="{{'transfer_' . $account->account_id}}" onclick="sendInfo(this)">
                                         </div>
                                     </div>
                                 </div>
@@ -67,38 +56,29 @@
 
 @section('page-js')
     <script>
-        function getAccountList(s) {
-            var id = s.value;
-            var account_id = s.id.replace('user_', '');
-            var send_account = '#account_' + account_id.toString();
+        var account_list = [];
+        $(document).ready(function () {
             $.ajax({
                 type: 'POST',
                 url: "{{url('/user/get_account_list')}}",
                 data:{
-                    'id': id,
+                    'id': '',
                 },
-                success: function (account_list) {
-                    $(send_account).find('option').remove().end().append('<option value="0">-- ID --</option>').val(0);
-                    $.map(account_list, function(val, key) {
-                        $(send_account).append($("<option></option>").attr('value', val['id']).text(val['id']));
+                success: function (response) {
+                    $.map(response, function(val, key) {
+                        account_list.push(val['account_id'])
                     });
                 }
-            })
-        }
+            });
+        });
 
         function sendInfo(s) {
             var id = s.id;
             var account_id = id.replace('transfer_', '');
-            var send_user_id = $('#user_' + account_id.toString()).val();
             var check_send = 1;
-            if (send_user_id == 0)
-            {
-                check_send = 0;
-                alert('ポイントを移送するユーザーを選択してください。');
-            }
-
             var send_account_id = $('#account_' + account_id.toString()).val();
-            if (send_account_id == 0)
+
+            if (! account_list.includes(parseInt(send_account_id)))
             {
                 check_send = 0;
                 alert('ポイントを移送する口座を選択してください。');
@@ -127,7 +107,6 @@
                     url: "{{url('/user/send_point')}}",
                     data:{
                         'id': account_id,
-                        'send_user' : send_user_id,
                         'send_account': send_account_id,
                         'point': send_point
                     },

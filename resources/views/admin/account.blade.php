@@ -67,7 +67,7 @@
                                             </td>
                                             <td>{{$account->user_id}}</td>
                                             <td>{{$account->name}}</td>
-                                            <td>{{$account->id}}</td>
+                                            <td>{{$account->account_id}}</td>
                                             <td>{{$account->point}}</td>
                                             <td style="display: flex;">
                                                 <input type="number" id="{{'point_' . $account->id}}" class="form-control" step=".01" style="margin-left: 1vw; max-width: 15vw;">

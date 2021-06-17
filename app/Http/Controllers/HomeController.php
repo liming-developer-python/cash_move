@@ -45,11 +45,26 @@ class HomeController extends Controller
             ->where('users.id', $userID)
             ->get();
         $account_info = DB::table('users')
-            ->select('users.*', 'account.*')
+            ->select('account.account_id')
             ->leftJoin('account', 'users.id', 'account.user_id')
             ->where('users.id', $userID)
             ->get();
-        return view('user.profile', ['info'=>$user_info[0], 'account'=>$account_info]);
+
+        $account_info -> transform(function($i) {
+            return (array)$i;
+        });
+        $account_array = $account_info -> toArray();
+
+        $history = DB::table('point_movement_history');
+        foreach ($account_array as $key => $value){
+            if($key == 0)
+                $history = $history -> where('sender', $value);
+            else
+                $history = $history -> orWhere('sender', $value);
+        }
+        $history = $history -> get();
+
+        return view('user.profile', ['info'=>$user_info[0], 'history'=>$history]);
     }
 
     public function saveUpdateProfile(Request $request)
@@ -84,28 +99,25 @@ class HomeController extends Controller
 
     public function getAccountList(Request $request)
     {
-        $user_id = $request['id'];
-        $user_accounts = DB::table('account')
-            ->select('account.*')
-            ->where('user_id', $user_id)
+        $accounts = DB::table('account')
+            ->select('account_id')
             ->get();
-        return $user_accounts;
+        return $accounts;
     }
 
     public function sendPoint(Request $request)
     {
         $account_id = $request['id'];
-        $send_user = $request['send_user'];
         $send_account = $request['send_account'];
         $point = $request['point'];
 
         DB::table('account')
-            ->where('id', $account_id)
+            ->where('account_id', $account_id)
             ->update([
                 'point'=>DB::raw('point-'.$point)
             ]);
         DB::table('account')
-            ->where('id', $send_account)
+            ->where('account_id', $send_account)
             ->update([
                 'point'=>DB::raw('point+'.$point)
             ]);
