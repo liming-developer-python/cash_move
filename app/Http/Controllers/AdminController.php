@@ -12,6 +12,7 @@ class AdminController extends Controller
     {
         $user_info = DB::table('users')
             ->select('users.*', 'admin_check')
+            ->where('is_admin', 0)
             ->LeftJoin('user_info', 'users.id', 'user_info.user_id')
             ->get();
         return view('adminDash', ['users' => $user_info]);
