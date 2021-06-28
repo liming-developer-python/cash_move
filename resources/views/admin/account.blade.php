@@ -130,86 +130,86 @@
 
 @section('page-js')
     <script>
-        $('document').ready(function () {
-            $('#create_account').click(function () {
-                var account_user_id = $('#user_list').val();
-                if (account_user_id == 0)
-                {
-                    alert('Please select user first。');
-                    return;
+        // $('document').ready(function () {
+        $('#create_account').click(function () {
+            var account_user_id = $('#user_list').val();
+            if (account_user_id == 0)
+            {
+                alert('Please select user first。');
+                return;
+            }
+            $.ajax({
+                type: 'POST',
+                url: "{{url('/admin/create_account')}}",
+                data:{
+                    'user_id': account_user_id,
+                },
+                success: function () {
+                    location.reload();
                 }
-                $.ajax({
-                    type: 'POST',
-                    url: "{{url('/admin/create_account')}}",
-                    data:{
-                        'user_id': account_user_id,
-                    },
-                    success: function () {
-                        location.reload();
-                    }
-                });
+            });
+        });
+
+        var account_list = []
+        var add_method = 0
+        var point_value = 0
+
+        $('#multi_add').click(function () {
+            $('#multi_select:checked').each(function(i){
+                var account_id = $(this).val().replace('multi_', '');
+                account_list.push(parseInt(account_id));
+            });
+            point_value = $('#multi_point').val();
+            add_method = $('#multi_way').val();
+            call_ajax();
+        })
+
+        $('input:button').click(function () {
+            var account_id = $(this).attr('id').replace('add_', '');
+            if (isNaN(parseInt(account_id)))
+            {
+                return ;
+            }
+            account_list.push(parseInt(account_id));
+            point_value = $('#point_' + account_id.toString()).val();
+            add_method = $('#way_' + account_id.toString()).val();
+            call_ajax();
+        })
+
+        function call_ajax() {
+            if (add_method == 0)
+            {
+                alert('Please select how to add pts。');
+                return ;
+            }
+            if (point_value == '' || point_value == 0)
+            {
+                alert('Please type pts value。');
+                return ;
+            }
+            if (account_list.length == 0)
+            {
+                alert('Please select account。');
+                return ;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: "{{url('/admin/account_add_point')}}",
+                data:{
+                    'account_id': account_list,
+                    'add_method': add_method,
+                    'point': point_value,
+                },
+                success: function () {
+                    location.reload();
+                }
             });
 
-            var account_list = []
-            var add_method = 0
-            var point_value = 0
-
-            $('#multi_add').click(function () {
-                $('#multi_select:checked').each(function(i){
-                    var account_id = $(this).val().replace('multi_', '');
-                    account_list.push(parseInt(account_id));
-                });
-                point_value = $('#multi_point').val();
-                add_method = $('#multi_way').val();
-                call_ajax();
-            })
-
-            $('input:button').click(function () {
-                var account_id = $(this).attr('id').replace('add_', '');
-                if (isNaN(parseInt(account_id)))
-                {
-                    return ;
-                }
-                account_list.push(parseInt(account_id));
-                point_value = $('#point_' + account_id.toString()).val();
-                add_method = $('#way_' + account_id.toString()).val();
-                call_ajax();
-            })
-
-            function call_ajax() {
-                if (add_method == 0)
-                {
-                    alert('Please select how to add pts。');
-                    return ;
-                }
-                if (point_value == '' || point_value == 0)
-                {
-                    alert('Please type pts value。');
-                    return ;
-                }
-                if (account_list.length == 0)
-                {
-                    alert('Please select account。');
-                    return ;
-                }
-
-                $.ajax({
-                    type: 'POST',
-                    url: "{{url('/admin/account_add_point')}}",
-                    data:{
-                        'account_id': account_list,
-                        'add_method': add_method,
-                        'point': point_value,
-                    },
-                    success: function () {
-                        location.reload();
-                    }
-                });
-
-                account_list = []
-                add_method = 0
-                point_value = 0
-            }
-        });
+            account_list = []
+            add_method = 0
+            point_value = 0
+        }
+        // });
     </script>
 @endsection
