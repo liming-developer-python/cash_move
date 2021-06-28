@@ -1,7 +1,7 @@
 <header id="header-wrap">
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
-        <div class="container" style="font-size: 1vw;">
+        <div class="container" style="font-size: 1rem;">
             <!-- Brand and toggle get grouped for better mobile display -->
             <a href="{{ url('/') }}" class="navbar-brand">GNcoin</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

@@ -22,25 +22,25 @@
                                 <div class="col-7">
                                     <div style="display: flex;">
                                         <label class="col-md-4 col-form-label text-md-right">Multi-Add: </label>
-                                        <input type="number" id="multi_point" class="form-control" step=".01" style="margin-left: 1vw;">
-                                        <select class="form-control custom-select" id="multi_way" style="margin-left: 1vw;">
+                                        <input type="number" id="multi_point" class="form-control" step=".01" style="margin-left: 1rem;">
+                                        <select class="form-control custom-select" id="multi_way" style="margin-left: 1rem;">
                                             <option value="0">-- pts way --</option>
                                             <option value="1">pts</option>
                                             <option value="2">%</option>
                                         </select>
-                                        <input type="button" id="multi_add" class="btn btn-primary btn-block" value="Add pts" style="margin-left: 1vw;">
+                                        <input type="button" id="multi_add" class="btn btn-primary btn-block" value="Add pts" style="margin-left: 1rem;">
                                     </div>
                                 </div>
                             </div>
 {{--                            <div class="card-title">Multi-Add: </div>--}}
 {{--                            <div style="display: flex;">--}}
-{{--                                <input type="number" id="multi_point" class="form-control" step=".01" style="margin-left: 1vw; max-width: 15vw;">--}}
-{{--                                <select class="form-control custom-select" id="multi_way" style="margin-left: 1vw; max-width: 10vw;">--}}
+{{--                                <input type="number" id="multi_point" class="form-control" step=".01" style="margin-left: 1rem; max-width: 15rem;">--}}
+{{--                                <select class="form-control custom-select" id="multi_way" style="margin-left: 1rem; max-width: 10rem;">--}}
 {{--                                    <option value="0">-- 追加方式 --</option>--}}
 {{--                                    <option value="1">pts</option>--}}
 {{--                                    <option value="2">%</option>--}}
 {{--                                </select>--}}
-{{--                                <input type="button" id="multi_add" class="btn btn-primary btn-block" value="ポイント追加" style="margin-left: 1vw; max-width: 10vw;">--}}
+{{--                                <input type="button" id="multi_add" class="btn btn-primary btn-block" value="ポイント追加" style="margin-left: 1rem; max-width: 10rem;">--}}
 {{--                            </div>--}}
                         </div>
                         <div class="card-body">
@@ -70,13 +70,13 @@
                                             <td>{{$account->account_id}}</td>
                                             <td>{{$account->point}}</td>
                                             <td style="display: flex;">
-                                                <input type="number" id="{{'point_' . $account->id}}" class="form-control" step=".01" style="margin-left: 1vw; max-width: 15vw;">
-                                                <select class="form-control custom-select" id="{{'way_' . $account->id}}" style="margin-left: 1vw; max-width: 10vw;">
+                                                <input type="number" id="{{'point_' . $account->id}}" class="form-control" step=".01" style="margin-left: 1rem; max-width: 15rem;">
+                                                <select class="form-control custom-select" id="{{'way_' . $account->id}}" style="margin-left: 1rem; max-width: 10rem;">
                                                     <option value="0">-- pts way --</option>
                                                     <option value="1">pts</option>
                                                     <option value="2">%</option>
                                                 </select>
-                                                <input type="button" id="{{'add_' . $account->id}}" class="btn btn-primary btn-block" value="Add pts" style="margin-left: 1vw; max-width: 10vw;">
+                                                <input type="button" id="{{'add_' . $account->id}}" class="btn btn-primary btn-block" value="Add pts" style="margin-left: 1rem; max-width: 10rem;">
                                             </td>
                                         </tr>
                                     @endforeach

@@ -22,13 +22,13 @@
                                 <div class="col-7">
                                     <div style="display: flex;">
                                         <label class="col-md-4 col-form-label text-md-right">Add pts to Group: </label>
-                                        <input type="number" id="multi_point" class="form-control" step=".01" style="margin-left: 1vw;">
-                                        <select class="form-control custom-select" id="multi_way" style="margin-left: 1vw;">
+                                        <input type="number" id="multi_point" class="form-control" step=".01" style="margin-left: 1rem;">
+                                        <select class="form-control custom-select" id="multi_way" style="margin-left: 1rem;">
                                             <option value="0">-- pts way --</option>
                                             <option value="1">pts</option>
                                             <option value="2">%</option>
                                         </select>
-                                        <input type="button" id="multi_add" class="btn btn-primary btn-block" value="Add pts" style="margin-left: 1vw;">
+                                        <input type="button" id="multi_add" class="btn btn-primary btn-block" value="Add pts" style="margin-left: 1rem;">
                                     </div>
                                 </div>
                             </div>

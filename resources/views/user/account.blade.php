@@ -12,7 +12,7 @@
                     <div class="col-md-5">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title" style="font-size: 1vw; color: #0c85d0;">
+                                <div class="card-title" style="font-size: 1rem; color: #0c85d0;">
                                     Account ID : {{$account->account_id}}
                                 </div>
                             </div>

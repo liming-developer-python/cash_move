@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="container" style="margin-top: 10vh; color: #00aced; font-size: 1.1vw;">
+<div class="container" style="margin-top: 10vh; color: #00aced; font-size: 1.1rem;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="border-color: #0b0b0b;">
@@ -13,7 +13,7 @@
 
                 <div class="card-body">
                     @if ($admin_check == 0)
-                        <p style="text-align: center; color: red; font-size: 1.2vw; margin: auto; padding-bottom: 2vh;">
+                        <p style="text-align: center; color: red; font-size: 1.2rem; margin: auto; padding-bottom: 2vh;">
                             <strong>Please wait until Admin checks.</strong>
                         </p>
                     @endif
@@ -60,13 +60,13 @@
                             </div>
                         </div>
                         @if ($admin_check == 2)
-                            <p style="text-align: center; color: red; font-size: 1.2vw; margin: auto; padding-bottom: 2vh;">
+                            <p style="text-align: center; color: red; font-size: 1.2rem; margin: auto; padding-bottom: 2vh;">
                                 <strong>Pleae Input correct email and password</strong>
                             </p>
                         @endif
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary" style="font-size: 1vw;">
+                                <button type="submit" class="btn btn-primary" style="font-size: 1rem;">
                                     Login
                                 </button>
 

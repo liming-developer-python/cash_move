@@ -30,7 +30,7 @@
                             </div>
                             <div class="row mb-2" id="info_error" style="display: none; color: red; text-align: center;">
                                 <div class="col">
-                                    <p class="mb-1 " style="font-size: 0.95vw;">Please input correct email and password。</p>
+                                    <p class="mb-1 " style="font-size: 0.95rem;">Please input correct email and password。</p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -43,7 +43,7 @@
                             </div>
                             <div class="row mb-2" id="password_error" style="display: none; color: red; text-align: center;">
                                 <div class="col">
-                                    <p class="mb-1 " style="font-size: 1vw;">Please confirm new password correctly。</p>
+                                    <p class="mb-1 " style="font-size: 1rem;">Please confirm new password correctly。</p>
                                 </div>
                             </div>
                             <div class="form-footer">

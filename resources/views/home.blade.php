@@ -12,7 +12,7 @@
                 <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
                     <div class="contents">
                         <h2 class="head-title">GNcoin</h2>
-                        <p style="font-size: 1vw; color: black;"></p>
+                        <p style="font-size: 1rem; color: black;"></p>
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
@@ -41,7 +41,7 @@
                         </div>
                         <div class="services-content">
                             <h3><a>My Profile</a></h3>
-                            <p style="font-size: 0.8vw; color: black;">You can check your profile. </p>
+                            <p style="font-size: 0.8rem; color: black;">You can check your profile. </p>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                         </div>
                         <div class="services-content">
                             <h3><a>My account</a></h3>
-                            <p style="font-size: 0.8vw; color: black;">You can check your account. </p>
+                            <p style="font-size: 0.8rem; color: black;">You can check your account. </p>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="services-content">
                             <h3><a>My Group</a></h3>
-                            <p style="font-size: 0.8vw; color: black;">You can get money in group. </p>
+                            <p style="font-size: 0.8rem; color: black;">You can get money in group. </p>
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                                 <h2 class="section-title">here is a description what you want</h2>
                             </div>
                             <div class="content">
-                                <p style="font-size: 1vw; color: black;">
+                                <p style="font-size: 1rem; color: black;">
                                     here is a description what you want
                                 </p>
                             </div>
@@ -103,10 +103,10 @@
                                 <h2 class="section-title">here is a description what you want</h2>
                             </div>
                             <div class="content">
-                                <p style="font-size: 1vw; color: black;">
+                                <p style="font-size: 1rem; color: black;">
                                     here is a description what you want
                                 </p>
-                                <a href="#" class="btn btn-common mt-3" style="font-size: 0.9vw; color: black;">here is a description what you want</a>
+                                <a href="#" class="btn btn-common mt-3" style="font-size: 0.9rem; color: black;">here is a description what you want</a>
                             </div>
                         </div>
                     </div>

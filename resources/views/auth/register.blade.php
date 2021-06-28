@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="container" style="margin-top: 10vh; color: #00aced; font-size: 1.1vw;">
+<div class="container" style="margin-top: 10vh; color: #00aced; font-size: 1.1rem;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="border-color: #0b0b0b;">
@@ -67,7 +67,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary" style="font-size: 1vw;">
+                                <button type="submit" class="btn btn-primary" style="font-size: 1rem;">
                                     Register
                                 </button>
                             </div>
