@@ -119,7 +119,7 @@ class RegisterController extends Controller
         });
         $array = $accounts -> toArray();
         $digit_number = rand(100000, 999999);
-        while ($this->checkDigitNumber($digit_number, $array))
+        while (!$this->checkDigitNumber($digit_number, $array))
         {
             $digit_number = rand(100000, 999999);
         }
