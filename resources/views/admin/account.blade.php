@@ -130,7 +130,6 @@
 
 @section('page-js')
     <script>
-        // $('document').ready(function () {
         $('#create_account').click(function () {
             var account_user_id = $('#user_list').val();
             if (account_user_id == 0)
@@ -210,6 +209,5 @@
             add_method = 0
             point_value = 0
         }
-        // });
     </script>
 @endsection
