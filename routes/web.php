@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -53,4 +54,8 @@ Route::post('/user/edit_profile', [HomeController::class, 'saveUpdateProfile']);
 Route::get('/my-account', [HomeController::class, 'showAccountPage']);
 Route::post('/user/get_account_list', [HomeController::class, 'getAccountList']);
 Route::post('/user/send_point', [HomeController::class, 'sendPoint']);
+
+Route::get('sendbasicemail', [MailController::class, 'basic_email']);
+Route::get('sendhtmlemail', [MailController::class, 'html_email']);
+Route::get('sendattachmentemail', [MailController::class, 'attachment_email']);
 
