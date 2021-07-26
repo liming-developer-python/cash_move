@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use http\Exception;
 use Illuminate\Http\Request;
 use Mail;
 use App\Http\Requests;
@@ -9,36 +10,56 @@ use App\Http\Controllers\Controller;
 
 class MailController extends Controller
 {
-    public function basic_email() {
-        $data = array('name'=>"Virat Gandhi");
-
-        Mail::send(['text'=>'mail'], $data, function($message) {
-            $message->to('lming2094@gmail.com', 'Tutorials Point')->subject
-            ('Laravel Basic Testing Mail');
-            $message->from('lming2094@gmail.com','Virat Gandhi');
+    public function register_token($name, $email, $token)
+    {
+        $data = array('token' => $token, 'name' => $name);
+        Mail::send('mail_register', $data, function ($message) use ($email) {
+            $message->to($email, 'Email Verify')->subject('Register Email Check');
+            $message->from('admin@admin.com', 'Point Movement System');
         });
-        echo "Basic Email Sent. Check your inbox.";
+        return true;
     }
 
-    public function html_email() {
-        $data = array('name'=>"Virat Gandhi");
-        Mail::send('mail', $data, function($message) {
-            $message->to('lming2094@gmail.com', 'Tutorials Point')->subject
-            ('Laravel HTML Testing Mail');
-            $message->from('lming2094@gmail.com','Virat Gandhi');
+    public function admin_check($name, $email)
+    {
+        $data = array('name' => $name);
+        Mail::send('mail_admin_check', $data, function ($message) use ($email) {
+            $message->to($email, 'Admin Check')->subject('Admin Account Check');
+            $message->from('admin@admin.com', 'Point Movement System');
         });
-        echo "HTML Email Sent. Check your inbox.";
+        return true;
     }
 
-    public function attachment_email() {
-        $data = array('name'=>"Virat Gandhi");
-        Mail::send('mail', $data, function($message) {
-            $message->to('lming2094@gmail.com', 'Tutorials Point')->subject
-            ('Laravel Testing Mail with Attachment');
-            $message->attach('C:\laravel-master\laravel\public\uploads\image.png');
-            $message->attach('C:\laravel-master\laravel\public\uploads\test.txt');
-            $message->from('lming2094@gmail.com','Virat Gandhi');
+    public function point_add($sender, $receiver, $account_id, $point, $cur_point, $email)
+    {
+        $data = array(
+            'sender' => $sender,
+            'receiver' => $receiver,
+            'account_id' => $account_id,
+            'point' => $point,
+            'cur_point' => $cur_point
+        );
+        Mail::send('mail_point_add', $data, function ($message) use ($email) {
+            $message->to($email, 'Point Movement')->subject('Point Movement');
+            $message->from('admin@admin.com', 'Point Movement System');
         });
-        echo "Email Sent with attachment. Check your inbox.";
+        return true;
+    }
+
+    public function point_send($sender, $receiver, $sender_account_id, $receiver_account_id, $point, $cur_point, $email)
+    {
+        $data = array(
+            'sender' => $sender,
+            'receiver' => $receiver,
+            'sender_account_id' => $sender_account_id,
+            'receiver_account_id' => $receiver_account_id,
+            'point' => $point,
+            'cur_point' => $cur_point
+        );
+        Mail::send('mail_point_send', $data, function ($message) use ($email) {
+            $message->to($email, 'Point Movement')->subject('Point Movement');
+            $message->from('admin@admin.com', 'Point Movement System');
+        });
+        return true;
     }
 }

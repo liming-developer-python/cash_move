@@ -30,6 +30,8 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('show_logi
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('show_register');
 Route::post('/register', [RegisterController::class, 'manualRegister'])->name('manual_register');
+Route::get('/verify/{token}', [RegisterController::class, 'verifyEmail']);
+Route::get('/verify', [RegisterController::class, 'verifyEmailSuccess'])->name('verify_success');
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
 // Admin Dashboard
@@ -55,7 +57,4 @@ Route::get('/my-account', [HomeController::class, 'showAccountPage']);
 Route::post('/user/get_account_list', [HomeController::class, 'getAccountList']);
 Route::post('/user/send_point', [HomeController::class, 'sendPoint']);
 
-Route::get('sendbasicemail', [MailController::class, 'basic_email']);
-Route::get('sendhtmlemail', [MailController::class, 'html_email']);
-Route::get('sendattachmentemail', [MailController::class, 'attachment_email']);
 

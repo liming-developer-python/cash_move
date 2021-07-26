@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\MailController;
 
 class AdminController extends Controller
 {
@@ -26,6 +27,15 @@ class AdminController extends Controller
             ->update([
                 'admin_check' => 1
             ]);
+        $user_info = DB::table('users')
+            ->where('id', $user_id)
+            ->select('name', 'email')
+            ->get();
+        $user_info -> transform(function($i) {
+            return (array)$i;
+        });
+        $array = $user_info -> toArray();
+        $email_verify_sender = app('App\Http\Controllers\MailController')->admin_check($array[0]['name'], $array[0]['email']);
         return True;
     }
 
@@ -129,6 +139,27 @@ class AdminController extends Controller
                     ->update([
                         'point'=>DB::raw('point+'.$point)
                     ]);
+
+                $account_info = DB::table('account')
+                    ->where('id', $account_id)
+                    ->select('user_id', 'point', 'account_id')
+                    ->get();
+                $account_info -> transform(function($i) {
+                    return (array)$i;
+                });
+                $account_info = $account_info -> toArray();
+
+                $user_info = DB::table('users')
+                    ->where('id', $account_info[0]['user_id'])
+                    ->select('name', 'email')
+                    ->get();
+                $user_info -> transform(function($i) {
+                    return (array)$i;
+                });
+                $user_info = $user_info -> toArray();
+
+                $email_sender = app('App\Http\Controllers\MailController')
+                    ->point_add('Admin', $user_info[0]['name'], $account_info[0]['account_id'], $point, $account_info[0]['point'], $user_info[0]['email']);
             }
             else if ($method == 2)
             {
@@ -138,6 +169,27 @@ class AdminController extends Controller
                     ->update([
                         'point'=>DB::raw('point*'.$percent)
                     ]);
+
+                $account_info = DB::table('account')
+                    ->where('id', $account_id)
+                    ->select('user_id', 'point', 'account_id')
+                    ->get();
+                $account_info -> transform(function($i) {
+                    return (array)$i;
+                });
+                $account_info = $account_info -> toArray();
+
+                $user_info = DB::table('users')
+                    ->where('id', $account_info[0]['user_id'])
+                    ->select('name', 'email')
+                    ->get();
+                $user_info -> transform(function($i) {
+                    return (array)$i;
+                });
+                $user_info = $user_info -> toArray();
+                $point = $account_info[0]['point'] * $point / (100 + $point);
+                $email_sender = app('App\Http\Controllers\MailController')
+                    ->point_add('Admin', $user_info[0]['name'], $account_info[0]['account_id'], $point, $account_info[0]['point'], $user_info[0]['email']);
             }
         }
 

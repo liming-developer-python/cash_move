@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Http\Controllers\MailController;
 use Cassandra\Exception\TruncateException;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -94,10 +95,15 @@ class RegisterController extends Controller
         $userID = DB::table('users') -> select('id') -> where('email', $input['email']) -> get();
         $userID = $userID[0] -> id;
 
+        $token = $this->createToken();
         DB::table('user_info') -> insert([
             'user_id' => $userID,
             'admin_check' => 0,
+            'email_verified' => 0,
+            'email_verify_token' => $token,
         ]);
+
+        $email_verify_sender = app('App\Http\Controllers\MailController')->register_token($input['name'], $input['email'], $token);
 
         $digit = $this->createAccountID();
         DB::table('account') -> insert([
@@ -106,7 +112,7 @@ class RegisterController extends Controller
             'account_id' => $digit,
         ]);
 
-        return view('auth.register_success');
+        return view('auth.verify');
     }
 
     public function createAccountID()
@@ -145,5 +151,85 @@ class RegisterController extends Controller
         {
             return False;
         }
+    }
+
+    public function createToken($length = 20)
+    {
+        $tokens = DB::table('user_info')
+            ->select('email_verify_token')
+            ->get();
+        $tokens -> transform(function($i) {
+            return (array)$i;
+        });
+        $array = $tokens -> toArray();
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        while (!$this->checkToken($randomString, $array))
+        {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+        }
+        return $randomString;
+    }
+
+    public function checkToken($token_str, $db_array)
+    {
+        $check_val = 0;
+        for ($i = 0; $i < count($db_array); $i ++)
+        {
+            if ($token_str == $db_array[$i]['email_verify_token'])
+            {
+                $check_val = 1;
+                break;
+            }
+        }
+        if ($check_val == 0)
+        {
+            return True;
+        }
+        else
+        {
+            return False;
+        }
+    }
+
+    public function verifyEmail($token)
+    {
+        $tokens = DB::table('user_info')
+            ->select('email_verify_token', 'user_id')
+            ->get();
+        $tokens -> transform(function($i) {
+            return (array)$i;
+        });
+        $array = $tokens -> toArray();
+        $user_id = 0;
+        for ($i = 0; $i < count($array); $i ++)
+        {
+            if ($token == $array[$i]['email_verify_token'])
+            {
+                $user_id = $array[$i]['user_id'];
+                break;
+            }
+        }
+        DB::table('user_info')
+            ->where('user_id', $user_id)
+            ->update([
+                'email_verified' => 1,
+            ]);
+        return redirect('verify');
+    }
+
+    public function verifyEmailSuccess()
+    {
+        return view('auth.register_success');
     }
 }

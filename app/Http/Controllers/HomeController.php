@@ -110,6 +110,10 @@ class HomeController extends Controller
         $account_id = $request['id'];
         $send_account = $request['send_account'];
         $point = $request['point'];
+        echo $account_id;
+        echo $send_account;
+        echo $point;
+//        die;
 
         DB::table('account')
             ->where('account_id', $account_id)
@@ -121,6 +125,50 @@ class HomeController extends Controller
             ->update([
                 'point'=>DB::raw('point+'.$point)
             ]);
+
+        $receiver_account_info = DB::table('account')
+            ->where('account_id', $send_account)
+            ->select('user_id', 'point', 'account_id')
+            ->get();
+        $receiver_account_info -> transform(function($i) {
+            return (array)$i;
+        });
+        $receiver_account_array = $receiver_account_info -> toArray();
+
+        $receiver_user_info = DB::table('users')
+            ->where('id', $receiver_account_array[0]['user_id'])
+            ->select('name', 'email')
+            ->get();
+        $receiver_user_info -> transform(function($i) {
+            return (array)$i;
+        });
+        $receiver_user_array = $receiver_user_info -> toArray();
+
+        $sender_account_info = DB::table('account')
+            ->where('account_id', $account_id)
+            ->select('user_id', 'point', 'account_id')
+            ->get();
+        $sender_account_info -> transform(function($i) {
+            return (array)$i;
+        });
+        $sender_account_array = $sender_account_info -> toArray();
+
+        $sender_user_info = DB::table('users')
+            ->where('id', $sender_account_array[0]['user_id'])
+            ->select('name', 'email')
+            ->get();
+        $sender_user_info -> transform(function($i) {
+            return (array)$i;
+        });
+        $sender_user_array = $sender_user_info -> toArray();
+
+        $email_sender = app('App\Http\Controllers\MailController')
+            ->point_add($sender_user_array[0]['name'], $receiver_user_array[0]['name'], $receiver_account_array[0]['account_id'],
+                $point, $receiver_account_array[0]['point'], $receiver_user_array[0]['email']);
+
+        $email_sender = app('App\Http\Controllers\MailController')
+            ->point_send($sender_user_array[0]['name'], $receiver_user_array[0]['name'], $sender_account_array[0]['account_id'],
+                $receiver_account_array[0]['account_id'], $point, $sender_account_array[0]['point'], $sender_user_array[0]['email']);
 
         $date = Carbon::now();
         DB::table('point_movement_history')
