@@ -85,7 +85,10 @@
                     <a class="side-menu__item" href="{{url('/admin/dash')}}"><i class="side-menu__icon fa fa-user-circle"></i><span class="side-menu__label">Users</span></a>
                 </li>
                 <li>
-                    <a class="side-menu__item" href="{{url('/admin/account')}}"><i class="side-menu__icon fa fa-bank"></i><span class="side-menu__label">Accounts</span></a>
+                    <a class="side-menu__item" href="{{url('/admin/account')}}"><i class="side-menu__icon fa fa-exchange"></i><span class="side-menu__label">Accounts</span></a>
+                </li>
+                <li>
+                    <a class="side-menu__item" href="{{url('/admin/export')}}"><i class="side-menu__icon fa fa-bank"></i><span class="side-menu__label">Exports</span></a>
                 </li>
                 <li>
                     <a class="side-menu__item" href="{{url('/admin/history')}}"><i class="side-menu__icon fa fa-area-chart"></i><span class="side-menu__label">Point Movement History</span></a>

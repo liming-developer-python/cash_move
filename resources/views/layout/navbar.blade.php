@@ -26,6 +26,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/export') }}">
+                                Export
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url('/logout') }}">
                                 Logout
                             </a>

@@ -49,12 +49,16 @@ Route::post('/admin/delete_user_group', [AdminController::class, 'deleteUserGrou
 Route::post('/admin/delete_group', [AdminController::class, 'deleteGroup'])->middleware('is_admin');
 Route::post('/admin/group_add_point', [AdminController::class, 'groupAddPoint'])->middleware('is_admin');
 Route::get('/admin/history', [AdminController::class, 'showHistory'])->middleware('is_admin');
+Route::get('/admin/export', [AdminController::class, 'showExport'])->middleware('is_admin');
+Route::post('/admin/export_confirm', [AdminController::class, 'confirmExport'])->middleware('is_admin');
 
 // User Pages
 Route::get('/profile', [HomeController::class, 'profilePage']);
+Route::get('/export', [HomeController::class, 'exportPage']);
 Route::post('/user/edit_profile', [HomeController::class, 'saveUpdateProfile']);
 Route::get('/my-account', [HomeController::class, 'showAccountPage']);
 Route::post('/user/get_account_list', [HomeController::class, 'getAccountList']);
 Route::post('/user/send_point', [HomeController::class, 'sendPoint']);
+Route::post('/user/export_point', [HomeController::class, 'exportPoint']);
 
 

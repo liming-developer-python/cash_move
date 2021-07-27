@@ -99,9 +99,17 @@ class HomeController extends Controller
 
     public function getAccountList(Request $request)
     {
+        $user_id = $request['id'];
         $accounts = DB::table('account')
             ->select('account_id')
             ->get();
+        if ($user_id != '')
+        {
+            $accounts = DB::table('account')
+                ->where('user_id', $user_id)
+                ->select('account_id', 'point')
+                ->get();
+        }
         return $accounts;
     }
 
@@ -179,5 +187,63 @@ class HomeController extends Controller
                 'time'      =>  $date,
             ]);
         return true;
+    }
+
+    public function exportPage()
+    {
+        $userID = Auth::id();
+        $account_info = DB::table('account')
+            ->where('user_id', $userID)
+            ->get();
+
+        $export_info = DB::table('export_point')
+            ->where('user_id', $userID)
+            ->get();
+
+        return view('user.export',
+            ['user_id'=>$userID, 'account_info'=>$account_info, 'export_list'=>$export_info, 'idx' => 0]);
+    }
+
+    public function exportPoint(Request $request)
+    {
+        $account_id = $request['id'];
+        $point = $request['point'];
+        $user_id = $request['user_id'];
+        DB::table('account')
+            ->where('account_id', $account_id)
+            ->update([
+                'point'=>DB::raw('point-'.$point)
+            ]);
+
+        $date = Carbon::now();
+        DB::table('export_point')
+            ->insert([
+                'user_id' => $user_id,
+                'account_id' => $account_id,
+                'point' => $point,
+                'admin_check' => 0,
+                'time' => $date
+            ]);
+
+        $account_info = DB::table('account')
+            ->where('account_id', $account_id)
+            ->select('point')
+            ->get();
+        $account_info -> transform(function($i) {
+            return (array)$i;
+        });
+        $account_array = $account_info -> toArray();
+
+        $user_info = DB::table('users')
+            ->where('id', $user_id)
+            ->select('name', 'email')
+            ->get();
+        $user_info -> transform(function($i) {
+            return (array)$i;
+        });
+        $user_array = $user_info -> toArray();
+
+        $email_sender = app('App\Http\Controllers\MailController')
+            ->point_add($point, $account_array[0]['point'], $account_id, $user_array[0]['name'], $user_array[0]['email']);
     }
 }

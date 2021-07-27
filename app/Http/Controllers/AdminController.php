@@ -317,4 +317,46 @@ class AdminController extends Controller
             ->get();
         return view('admin.history', ['history_data' => $history_data]);
     }
+
+    public function showExport()
+    {
+        $export_data = DB::table('export_point')
+            ->select('export_point.*')
+            ->get();
+        return view('admin.export', ['export_data' => $export_data]);
+    }
+
+    public function confirmExport(Request $request)
+    {
+        $id = $request['request_id'];
+
+        $export_info = DB::table('export_point')
+            ->where('id', $id)
+            ->select('export_point.*')
+            ->get();
+        $export_info -> transform(function($i) {
+            return (array)$i;
+        });
+        $export_array = $export_info -> toArray();
+
+        $user_id = $export_array[0]['user_id'];
+        $account_id = $export_array[0]['account_id'];
+        $point = $export_array[0]['point'];
+
+        $user_info = DB::table('users')
+            ->where('id', $user_id)
+            ->select('name', 'email')
+            ->get();
+        $user_info -> transform(function($i) {
+            return (array)$i;
+        });
+        $user_array = $user_info -> toArray();
+
+        $name = $user_array[0]['name'];
+        $email = $user_array[0]['email'];
+
+        $email_sender = app('App\Http\Controllers\MailController')
+            ->point_add($point, $account_id, $name, $email);
+        return True;
+    }
 }

@@ -99,7 +99,7 @@
             if (send_account_id == account_id)
             {
                 check_send = 0;
-                alert('現在選択したアカウントへの移送です。 他のアカウントを選択してください。');
+                alert('Please select another account to send points. You selected the same account');
             }
             if (check_send == 1){
                 $.ajax({
