@@ -63,7 +63,15 @@ class LoginController extends Controller
                 'admin_check' => 2
             ]);
         }
-        $admin_check = DB::table('user_info')->select('admin_check')->where('user_id', $userID[0]->id)->get();
+        $admin_check = DB::table('user_info')->select('admin_check', 'email_verified')->where('user_id', $userID[0]->id)->get();
+
+        if ($admin_check[0] -> email_verified == 0)
+        {
+            return view('auth.login', [
+                'admin_check' => 3
+            ]);
+        }
+
         if ($admin_check[0] -> admin_check == 0)
         {
             return view('auth.login', [
@@ -81,8 +89,9 @@ class LoginController extends Controller
             }
         }
         else{
-            return redirect()->route('login')
-                ->with('error', 'email');
+            return view('auth.login', [
+                'admin_check' => 4
+            ]);
         }
     }
 }

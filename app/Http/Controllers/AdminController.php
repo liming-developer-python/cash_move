@@ -330,6 +330,14 @@ class AdminController extends Controller
     {
         $id = $request['request_id'];
 
+        $date = Carbon::now();
+        DB::table('export_point')
+            ->where('id', $id)
+            ->update([
+                'admin_check' => 1,
+                'check_time' => $date
+            ]);
+
         $export_info = DB::table('export_point')
             ->where('id', $id)
             ->select('export_point.*')
@@ -356,7 +364,7 @@ class AdminController extends Controller
         $email = $user_array[0]['email'];
 
         $email_sender = app('App\Http\Controllers\MailController')
-            ->point_add($point, $account_id, $name, $email);
+            ->export_confirm($point, $account_id, $name, $email);
         return True;
     }
 }

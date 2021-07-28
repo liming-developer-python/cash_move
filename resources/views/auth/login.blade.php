@@ -17,6 +17,16 @@
                             <strong>Please wait until Admin checks.</strong>
                         </p>
                     @endif
+                    @if ($admin_check == 3)
+                        <p style="text-align: center; color: red; font-size: 1.2rem; margin: auto; padding-bottom: 2vh;">
+                            <strong>You should verify your email address first.</strong>
+                        </p>
+                    @endif
+                    @if ($admin_check == 4)
+                        <p style="text-align: center; color: red; font-size: 1.2rem; margin: auto; padding-bottom: 2vh;">
+                            <strong>Please input correct email and password</strong>
+                        </p>
+                    @endif
                     <form method="POST" action="{{ url('/login') }}">
                         @csrf
 

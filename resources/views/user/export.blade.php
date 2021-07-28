@@ -57,17 +57,19 @@
                                         </tr>
                                     @else
                                         @foreach($export_list as $export_info)
-                                            <td>{{ ++$idx }}</td>
-                                            <td>{{ $export_info->account_id }}</td>
-                                            <td>{{ $export_info->point }}</td>
-                                            <td>{{ $export_info->time }}</td>
-                                            <td>
-                                                @if($export_info->admin_check == 1)
-                                                    {{ $export_info->check_time }}
-                                                @else
-                                                    Pending
-                                                @endif
-                                            </td>
+                                            <tr>
+                                                <td>{{ ++$idx }}</td>
+                                                <td>{{ $export_info->account_id }}</td>
+                                                <td>{{ $export_info->point }}</td>
+                                                <td>{{ $export_info->time }}</td>
+                                                <td>
+                                                    @if($export_info->admin_check == 1)
+                                                        {{ $export_info->check_time }}
+                                                    @else
+                                                        Pending
+                                                    @endif
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     @endif
                                     </tbody>

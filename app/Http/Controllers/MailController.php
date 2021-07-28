@@ -63,7 +63,22 @@ class MailController extends Controller
         return true;
     }
 
-    public function export_request($point, $account_id, $name, $email)
+    public function export_request($point, $cur_point, $account_id, $name, $email)
+    {
+        $data = array(
+            'point' => $point,
+            'cur_point' => $cur_point,
+            'account_id' => $account_id,
+            'name' => $name,
+        );
+        Mail::send('mail_export_request', $data, function ($message) use ($email) {
+            $message->to($email, 'Point Movement')->subject('Point Movement');
+            $message->from('admin@admin.com', 'Point Movement System');
+        });
+        return true;
+    }
+
+    public function export_confirm($point, $account_id, $name, $email)
     {
         $data = array(
             'point' => $point,

@@ -61,13 +61,13 @@
 
 @section('page-js')
     <script>
-        $(".verify_btn").click(function(e){
+        $(".confirm_btn").click(function(e){
             var confirmCheck = confirm("Do you really want to confirm the request?");
             if (confirmCheck) {
                 var idClicked = e.target.id;
                 $.ajax({
                     type: 'POST',
-                    url: "{{url('admin/export_confirm')}}",
+                    url: "{{url('/admin/export_confirm')}}",
                     data:{
                         'request_id': idClicked,
                     },

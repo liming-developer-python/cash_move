@@ -26,5 +26,6 @@ class VerifyCsrfToken extends Middleware
         '/admin/create_account',
         '/admin/user_delete',
         '/admin/export_confirm',
+        '/user/export_point',
     ];
 }

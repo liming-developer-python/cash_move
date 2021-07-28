@@ -244,6 +244,6 @@ class HomeController extends Controller
         $user_array = $user_info -> toArray();
 
         $email_sender = app('App\Http\Controllers\MailController')
-            ->point_add($point, $account_array[0]['point'], $account_id, $user_array[0]['name'], $user_array[0]['email']);
+            ->export_request($point, $account_array[0]['point'], $account_id, $user_array[0]['name'], $user_array[0]['email']);
     }
 }
