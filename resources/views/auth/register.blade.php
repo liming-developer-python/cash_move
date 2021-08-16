@@ -23,7 +23,7 @@
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>Input correct nickname</strong>
+                                        <strong>This nickname is already used.</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -37,7 +37,7 @@
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>Email address is already used。</strong>
+                                        <strong>Email address is already used.</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -51,9 +51,11 @@
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>Please confirm your password。</strong>
+                                        <strong>You should use more strong password.</strong>
                                     </span>
                                 @enderror
+                                <p style="font-size: 0.8rem; color: black;">＊ Your password must contain at least 8 characters.</p>
+                                <p style="font-size: 0.8rem; color: black;">＊ Your password can contain "~!@#$%=".</p>
                             </div>
                         </div>
 
@@ -62,12 +64,15 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <span class="invalid-feedback" id="wrong_confirm" style="display: none;">
+                                    <strong>Please confirm the same password.</strong>
+                                </span>
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary" style="font-size: 1rem;">
+                                <button type="submit" class="btn btn-primary" id="submit_btn" style="font-size: 1rem;">
                                     Register
                                 </button>
                             </div>
@@ -78,4 +83,21 @@
         </div>
     </div>
 </div>
+<script>
+    var password = document.getElementById('password');
+    var confirm = document.getElementById('password-confirm');
+    var wrong_confirm = document.getElementById('wrong_confirm');
+
+    confirm.addEventListener('input', function(event) {
+        if (password.value === event.target.value)
+        {
+            wrong_confirm.style.display = "none";
+            document.getElementById("submit_btn").disabled = false;
+        }
+        else {
+            wrong_confirm.style.display = "block";
+            document.getElementById("submit_btn").disabled = true;
+        }
+    });
+</script>
 @endsection
