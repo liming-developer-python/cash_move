@@ -51,11 +51,10 @@
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>You should use more strong password.</strong>
+                                        <strong>Please use more strong password.</strong>
                                     </span>
                                 @enderror
-                                <p style="font-size: 0.8rem; color: black;">＊ Your password must contain at least 8 characters.</p>
-                                <p style="font-size: 0.8rem; color: black;">＊ Your password can contain "~!@#$%=".</p>
+                                <p style="font-size: 0.8rem; color: black;">＊ Password must contain at least 8 characters.</p>
                             </div>
                         </div>
 
