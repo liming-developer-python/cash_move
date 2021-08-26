@@ -15,7 +15,7 @@
     <link rel="icon" href="{{ asset('img/logo.jpg') }}" type="image/icon type">
 
     <!-- Title -->
-    <title>GNcoin</title>
+    <title>IIVIIET</title>
     <link rel="stylesheet" href="{{asset('admin/fonts/fonts/font-awesome.min.css')}}">
 
     <!-- Font Family -->

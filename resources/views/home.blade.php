@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
                     <div class="contents">
-                        <h2 class="head-title">IIVllet</h2>
+                        <h2 class="head-title">IIVIIET</h2>
                         <p style="font-size: 1rem; color: black;"></p>
                     </div>
                 </div>

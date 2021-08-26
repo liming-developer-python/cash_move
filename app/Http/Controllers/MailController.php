@@ -15,7 +15,7 @@ class MailController extends Controller
         $data = array('token' => $token, 'name' => $name);
         Mail::send('mail_register', $data, function ($message) use ($email) {
             $message->to($email, 'Email Verify')->subject('Register Email Check');
-            $message->from('admin@admin.com', 'IIVllet事務局');
+            $message->from('admin@admin.com', 'IIVIIET事務局');
         });
         return true;
     }
@@ -25,7 +25,7 @@ class MailController extends Controller
         $data = array('name' => $name);
         Mail::send('mail_admin_check', $data, function ($message) use ($email) {
             $message->to($email, 'Admin Check')->subject('Admin Account Check');
-            $message->from('admin@admin.com', 'IIVllet事務局');
+            $message->from('admin@admin.com', 'IIVIIET事務局');
         });
         return true;
     }
@@ -40,8 +40,8 @@ class MailController extends Controller
             'cur_point' => $cur_point
         );
         Mail::send('mail_point_add', $data, function ($message) use ($email) {
-            $message->to($email, 'IIVllet')->subject('IIVllet');
-            $message->from('admin@admin.com', 'IIVllet事務局');
+            $message->to($email, 'IIVIIET')->subject('IIVIIET');
+            $message->from('admin@admin.com', 'IIVIIET事務局');
         });
         return true;
     }
@@ -57,8 +57,8 @@ class MailController extends Controller
             'cur_point' => $cur_point
         );
         Mail::send('mail_point_send', $data, function ($message) use ($email) {
-            $message->to($email, 'IIVllet')->subject('IIVllet');
-            $message->from('admin@admin.com', 'IIVllet事務局');
+            $message->to($email, 'IIVIIET')->subject('IIVIIET');
+            $message->from('admin@admin.com', 'IIVIIET事務局');
         });
         return true;
     }
@@ -72,8 +72,8 @@ class MailController extends Controller
             'name' => $name,
         );
         Mail::send('mail_export_request', $data, function ($message) use ($email) {
-            $message->to($email, 'IIVllet')->subject('IIVllet');
-            $message->from('admin@admin.com', 'IIVllet事務局');
+            $message->to($email, 'IIVIIET')->subject('IIVIIET');
+            $message->from('admin@admin.com', 'IIVIIET事務局');
         });
         return true;
     }
@@ -86,8 +86,8 @@ class MailController extends Controller
             'name' => $name,
         );
         Mail::send('mail_export_confirm', $data, function ($message) use ($email) {
-            $message->to($email, 'IIVllet')->subject('IIVllet');
-            $message->from('admin@admin.com', 'IIVllet事務局');
+            $message->to($email, 'IIVIIET')->subject('IIVIIET');
+            $message->from('admin@admin.com', 'IIVIIET事務局');
         });
         return true;
     }

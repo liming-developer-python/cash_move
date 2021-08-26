@@ -13,7 +13,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
-    <title>GNcoin</title>
+    <title>IIVIIET</title>
 
     <link rel="stylesheet" href="{{asset('admin/fonts/fonts/font-awesome.min.css')}}">
 

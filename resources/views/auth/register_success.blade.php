@@ -11,7 +11,7 @@
                 <div class="card" style="border-color: #0b0b0b;">
                     <div class="card-header" style="border-color: #0b0b0b; background-color: rgba(246, 56, 84, 0.8) !important; color: white;">Register</div>
                         <p style="font-size: 1.3rem; text-align: center; padding-top: 3vh; padding-bottom: 3vh; margin: auto;">
-                            Welcome to GNcoin<br>
+                            Welcome to IIVIIET<br>
                             You registerd successfully!<br>
                             Please wait until Admin agrees.<br>
                         </p>
