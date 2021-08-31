@@ -1,5 +1,7 @@
 <h1>Hi, {{ $name }}</h1>
-<p>You just requested {{ $point }}pts to export from your account id: {{ $account_id  }}</p>
-<p>Your account has {{ $cur_point }}pts now.</p>
+<p>Your export request has been successfully submitted.</p>
+<p>Export P: {{ $point  }}</p>
+<p>From ID: {{ $account_id  }}</p>
+<p>Your account has {{ $cur_point }}P now.</p>
 <p>Thanks for your usage.</p>
 
