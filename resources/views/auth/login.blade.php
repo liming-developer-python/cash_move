@@ -38,7 +38,7 @@
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>Pleae Input correct email and password</strong>
+                                        <strong>Please Input correct email and password</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -52,7 +52,7 @@
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>Pleae Input correct email and password</strong>
+                                        <strong>Please Input correct email and password</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -71,7 +71,7 @@
                         </div>
                         @if ($admin_check == 2)
                             <p style="text-align: center; color: red; font-size: 1.2rem; margin: auto; padding-bottom: 2vh;">
-                                <strong>Pleae Input correct email and password</strong>
+                                <strong>Please Input correct email and password</strong>
                             </p>
                         @endif
                         <div class="form-group row mb-0">
