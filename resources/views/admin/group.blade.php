@@ -103,6 +103,20 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="loadMe" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="loader"></div>
+                    <div clas="loader-txt">
+                        <p>Please wait for a moment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('page-js')
@@ -115,6 +129,12 @@
             {
                 return;
             }
+
+            $("#loadMe").modal({
+                backdrop: "static", //remove ability to close modal with click
+                keyboard: false, //remove option to close with keyboard
+                show: true //Display loader!
+            });
             $.ajax({
                 type: 'POST',
                 url: "{{url('/admin/get_group_members')}}",
@@ -122,6 +142,7 @@
                     'id': group_id,
                 },
                 success: function (member_list) {
+                    $("#loadMe").modal("hide");
                     $('#user_list').find('option').remove().end().append('<option value="0">-- users --</option>').val(0);
                     @foreach($users as $user)
                         $('#user_list').append($("<option></option>").attr('value', '{{$user->id}}').text('{{$user->name}}'));
@@ -143,6 +164,11 @@
                     alert('Please input group name。');
                     return;
                 }
+                $("#loadMe").modal({
+                    backdrop: "static", //remove ability to close modal with click
+                    keyboard: false, //remove option to close with keyboard
+                    show: true //Display loader!
+                });
                 $.ajax({
                     type: 'POST',
                     url: "{{url('/admin/create_group')}}",
@@ -150,6 +176,7 @@
                         'group_name': create_group_name,
                     },
                     success: function () {
+                        $("#loadMe").modal("hide");
                         location.reload();
                     }
                 });
@@ -169,6 +196,11 @@
                     return;
                 }
                 group_id = parseInt(group_id);
+                $("#loadMe").modal({
+                    backdrop: "static", //remove ability to close modal with click
+                    keyboard: false, //remove option to close with keyboard
+                    show: true //Display loader!
+                });
                 $.ajax({
                     type: 'POST',
                     url: "{{url('/admin/add_user_group')}}",
@@ -177,6 +209,7 @@
                         'group_id': group_id
                     },
                     success: function () {
+                        $("#loadMe").modal("hide");
                         var user_name = $("#user_list option[value='" + user_id + "']").text();
                         $('#member_list').append($("<option></option>").attr('value', user_id).text(user_name));
                         $("#user_list option[value='" + user_id + "']").remove();
@@ -199,6 +232,11 @@
                 }
                 group_id = parseInt(group_id);
 
+                $("#loadMe").modal({
+                    backdrop: "static", //remove ability to close modal with click
+                    keyboard: false, //remove option to close with keyboard
+                    show: true //Display loader!
+                });
                 $.ajax({
                     type: 'POST',
                     url: "{{url('/admin/delete_user_group')}}",
@@ -207,6 +245,7 @@
                         'group_id': group_id
                     },
                     success: function () {
+                        $("#loadMe").modal("hide");
                         var user_name = $("#member_list option[value='" + user_id + "']").text();
                         $('#user_list').append($("<option></option>").attr('value', user_id).text(user_name));
                         $("#member_list option[value='" + user_id + "']").remove();
@@ -227,6 +266,11 @@
                 }
                 group_id = parseInt(group_id);
 
+                $("#loadMe").modal({
+                    backdrop: "static", //remove ability to close modal with click
+                    keyboard: false, //remove option to close with keyboard
+                    show: true //Display loader!
+                });
                 $.ajax({
                     type: 'POST',
                     url: "{{url('/admin/delete_group')}}",
@@ -234,6 +278,7 @@
                         'group_id': group_id
                     },
                     success: function () {
+                        $("#loadMe").modal("hide");
                         location.reload();
                     }
                 });
@@ -273,6 +318,12 @@
                     return ;
                 }
 
+                $("#loadMe").modal({
+                    backdrop: "static", //remove ability to close modal with click
+                    keyboard: false, //remove option to close with keyboard
+                    show: true //Display loader!
+                });
+
                 $.ajax({
                     type: 'POST',
                     url: "{{url('/admin/group_add_point')}}",
@@ -282,6 +333,7 @@
                         'point': point_value,
                     },
                     success: function () {
+                        $("#loadMe").modal("hide");
                         location.reload();
                     }
                 });

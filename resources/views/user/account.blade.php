@@ -52,6 +52,19 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="loadMe" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="loader"></div>
+                    <div clas="loader-txt">
+                        <p>Please wait for a moment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('page-js')
@@ -81,7 +94,7 @@
             if (! account_list.includes(parseInt(send_account_id)))
             {
                 check_send = 0;
-                alert('ポイントを移送する口座を選択してください。');
+                alert('Please select correct Account ID where you want to transfer.');
             }
 
             var send_point = $('#point_' + account_id.toString()).val();
@@ -89,12 +102,12 @@
             if (send_point == 0)
             {
                 check_send = 0;
-                alert('移送するポイント量を入力してください。');
+                alert('You should type amount of points.');
             }
             if (send_point > parseFloat(amount_point))
             {
                 check_send = 0;
-                alert('在庫量が十分ではないため移送できません。');
+                alert("You don't have enough points.");
             }
             if (send_account_id == account_id)
             {
@@ -102,6 +115,11 @@
                 alert('Please select another account to send points. You selected the same account');
             }
             if (check_send == 1){
+                $("#loadMe").modal({
+                    backdrop: "static", //remove ability to close modal with click
+                    keyboard: false, //remove option to close with keyboard
+                    show: true //Display loader!
+                });
                 $.ajax({
                     type: 'POST',
                     url: "{{url('/user/send_point')}}",
@@ -112,7 +130,12 @@
                     },
                     success: function () {
                         location.reload();
-                        alert('移送が成功しました。');
+                        $("#loadMe").modal("hide");
+                        alert('Transfer Succeed.');
+                    },
+                    error: function () {
+                        $("#loadMe").modal("hide");
+                        alert('Transfer failed.');
                     }
                 });
             }

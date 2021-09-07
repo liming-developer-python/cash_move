@@ -57,6 +57,20 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="loadMe" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="loader"></div>
+                    <div clas="loader-txt">
+                        <p>Please wait for a moment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('page-js')
@@ -65,6 +79,11 @@
             var confirmCheck = confirm("Do you really want to confirm the request?");
             if (confirmCheck) {
                 var idClicked = e.target.id;
+                $("#loadMe").modal({
+                    backdrop: "static", //remove ability to close modal with click
+                    keyboard: false, //remove option to close with keyboard
+                    show: true //Display loader!
+                });
                 $.ajax({
                     type: 'POST',
                     url: "{{url('/admin/export_confirm')}}",
@@ -72,6 +91,7 @@
                         'request_id': idClicked,
                     },
                     success: function () {
+                        $("#loadMe").modal("hide");
                         location.reload();
                     }
                 });
