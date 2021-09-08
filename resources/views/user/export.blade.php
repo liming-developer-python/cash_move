@@ -27,7 +27,7 @@
                                         <option value="{{$account->account_id}}">{{$account->account_id}}</option>
                                     @endforeach
                                 </select>
-                                <input type="number" id="point_export" class="form-control" step=".01" style="margin-left: 1rem; height: 2.5rem; width: 13rem;">
+                                <input type="number" placeholder="pts" id="point_export" class="form-control" step=".01" style="margin-left: 1rem; height: 2.5rem; width: 13rem;">
                                 <input type="button" id="btn_export" class="btn btn-primary btn-block" value="Export" onclick="requestExport()" style="margin-left: 1rem; height: 2.5rem; max-width: 7rem;">
                             </div>
                         </div>
