@@ -111,7 +111,7 @@
                 <div class="modal-body text-center">
                     <div class="loader"></div>
                     <div clas="loader-txt">
-                        <p>Please wait for a moment.</p>
+                        <p>Please wait.</p>
                     </div>
                 </div>
             </div>

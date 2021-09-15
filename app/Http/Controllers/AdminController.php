@@ -48,6 +48,18 @@ class AdminController extends Controller
         DB::table('user_info')
             ->where('user_id', $user_id)
             ->delete();
+        $rows = DB::table('account')
+            ->select('account_id')
+            ->where('user_id', $user_id)
+            ->get();
+        foreach ($rows as $row)
+        {
+            DB::table('point_movement_history')
+                ->where('sender', $row->account_id)
+                ->orWhere('receiver', $row->account_id)
+                ->delete();
+        }
+
         DB::table('account')
             ->where('user_id', $user_id)
             ->delete();

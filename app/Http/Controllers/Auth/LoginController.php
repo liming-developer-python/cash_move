@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -79,7 +80,9 @@ class LoginController extends Controller
             ]);
         }
 
-        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
+//        $remember = $input['remember'] ? true : false;
+
+        if(Auth::attempt(array('email' => $input['email'], 'password' => $input['password']), true))
         {
             if(auth()->user()->is_admin == 1){
                 return redirect()->route('admin.dash');

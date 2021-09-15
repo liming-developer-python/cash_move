@@ -36,44 +36,46 @@
                 <div class="col-md-5 col-xs-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title" style="font-size: 1rem; color: #0c85d0;">
+                            <div class="card-title w-100" style="font-size: 1rem; color: #0c85d0;">
                                 <br>
                                 <p style="font-size: 1.5rem; color: orangered;">Export History</p>
                                 <br>
-                                <table id="history" class="table table-striped table-bordered" style="width:100%;">
-                                    <thead>
-                                    <tr>
-                                        <th class="wd-20p">No</th>
-                                        <th class="wd-20p">Account ID</th>
-                                        <th class="wd-15p">Point</th>
-                                        <th class="wd-20p">Request Date</th>
-                                        <th class="wd-20p">Admin Confirm Date</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @if(count($export_list) == 0)
+                                <div class="table-responsive">
+                                    <table id="history" class="table table-striped table-bordered dataTable no-footer" style="width: 100%;">
+                                        <thead>
                                         <tr>
-                                            <td colspan="5">There is no export history.</td>
+                                            <th class="wd-15p">No</th>
+                                            <th class="wd-20p">Account ID</th>
+                                            <th class="wd-15p">Point</th>
+                                            <th class="wd-20p">Request Date</th>
+                                            <th class="wd-20p">Admin Confirm Date</th>
                                         </tr>
-                                    @else
-                                        @foreach($export_list as $export_info)
+                                        </thead>
+                                        <tbody>
+                                        @if(count($export_list) == 0)
                                             <tr>
-                                                <td>{{ ++$idx }}</td>
-                                                <td>{{ $export_info->account_id }}</td>
-                                                <td>{{ $export_info->point }}</td>
-                                                <td>{{ $export_info->time }}</td>
-                                                <td>
-                                                    @if($export_info->admin_check == 1)
-                                                        {{ $export_info->check_time }}
-                                                    @else
-                                                        Pending
-                                                    @endif
-                                                </td>
+                                                <td colspan="5">There is no export history.</td>
                                             </tr>
-                                        @endforeach
-                                    @endif
-                                    </tbody>
-                                </table>
+                                        @else
+                                            @foreach($export_list as $export_info)
+                                                <tr>
+                                                    <td>{{ ++$idx }}</td>
+                                                    <td>{{ $export_info->account_id }}</td>
+                                                    <td>{{ $export_info->point }}</td>
+                                                    <td>{{ $export_info->time }}</td>
+                                                    <td>
+                                                        @if($export_info->admin_check == 1)
+                                                            {{ $export_info->check_time }}
+                                                        @else
+                                                            Pending
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -88,7 +90,7 @@
                 <div class="modal-body text-center">
                     <div class="loader"></div>
                     <div clas="loader-txt">
-                        <p>Please wait for a moment.</p>
+                        <p>Please wait.</p>
                     </div>
                 </div>
             </div>
@@ -148,7 +150,7 @@
                     success: function () {
                         location.reload();
                         $("#loadMe").modal("hide");
-                        alert('You export your points successfully');
+                        alert('You export request has been successfully submitted.');
                     }
                 });
             }
