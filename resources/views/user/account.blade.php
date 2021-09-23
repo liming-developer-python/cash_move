@@ -30,7 +30,7 @@
                                     <div class="col-md-5">
                                         <div class="form-group">
                                             <label class="form-label" style="color: #0c85d0;">Send Amount</label>
-                                            <input type="number" class="form-control" placeholder="pts" id="{{'point_' . $account->account_id}}" step=".01">
+                                            <input type="number" class="form-control" placeholder="P" id="{{'point_' . $account->account_id}}" step=".01">
                                         </div>
                                     </div>
                                 </div>

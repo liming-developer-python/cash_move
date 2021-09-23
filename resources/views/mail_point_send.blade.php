@@ -4,5 +4,4 @@
 <p>Transfer P: {{ $point  }}</p>
 <p>From ID: {{ $sender_account_id  }}</p>
 <p>To ID: {{ $receiver_account_id  }}</p>
-<p>Your account has {{ $cur_point }}P now.</p>
-<p>Thanks for your usage.</p>
+<p>Account Balance {{ $cur_point }}P</p>

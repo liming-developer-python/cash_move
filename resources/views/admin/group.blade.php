@@ -21,14 +21,14 @@
                                 </div>
                                 <div class="col-7">
                                     <div style="display: flex;">
-                                        <label class="col-md-4 col-form-label text-md-right">Add pts to Group: </label>
+                                        <label class="col-md-4 col-form-label text-md-right">Add P to Group: </label>
                                         <input type="number" id="multi_point" class="form-control" step=".01" style="margin-left: 1rem;">
                                         <select class="form-control custom-select" id="multi_way" style="margin-left: 1rem;">
-                                            <option value="0">-- pts way --</option>
-                                            <option value="1">pts</option>
+                                            <option value="0">-- P way --</option>
+                                            <option value="1">P</option>
                                             <option value="2">%</option>
                                         </select>
-                                        <input type="button" id="multi_add" class="btn btn-primary btn-block" value="Add pts" style="margin-left: 1rem;">
+                                        <input type="button" id="multi_add" class="btn btn-primary btn-block" value="Add P" style="margin-left: 1rem;">
                                     </div>
                                 </div>
                             </div>
@@ -304,12 +304,12 @@
             function call_ajax() {
                 if (add_method == 0)
                 {
-                    alert('Please select how to add pts。');
+                    alert('Please select how to add P。');
                     return ;
                 }
                 if (point_value == '' || point_value == 0)
                 {
-                    alert('Please input pts value。');
+                    alert('Please input P value。');
                     return ;
                 }
                 if (user_list.length == 0)

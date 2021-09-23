@@ -24,11 +24,11 @@
                                         <label class="col-md-4 col-form-label text-md-right">Multi-Add: </label>
                                         <input type="number" id="multi_point" class="form-control" step=".01" style="margin-left: 1rem;">
                                         <select class="form-control custom-select" id="multi_way" style="margin-left: 1rem;">
-                                            <option value="0">-- pts way --</option>
-                                            <option value="1">pts</option>
+                                            <option value="0">-- P way --</option>
+                                            <option value="1">P</option>
                                             <option value="2">%</option>
                                         </select>
-                                        <input type="button" id="multi_add" class="btn btn-primary btn-block" value="Add pts" style="margin-left: 1rem;">
+                                        <input type="button" id="multi_add" class="btn btn-primary btn-block" value="Add P" style="margin-left: 1rem;">
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
 {{--                                <input type="number" id="multi_point" class="form-control" step=".01" style="margin-left: 1rem; max-width: 15rem;">--}}
 {{--                                <select class="form-control custom-select" id="multi_way" style="margin-left: 1rem; max-width: 10rem;">--}}
 {{--                                    <option value="0">-- 追加方式 --</option>--}}
-{{--                                    <option value="1">pts</option>--}}
+{{--                                    <option value="1">P</option>--}}
 {{--                                    <option value="2">%</option>--}}
 {{--                                </select>--}}
 {{--                                <input type="button" id="multi_add" class="btn btn-primary btn-block" value="ポイント追加" style="margin-left: 1rem; max-width: 10rem;">--}}
@@ -52,8 +52,8 @@
                                         <th class="wd-20p">User ID</th>
                                         <th class="wd-20p">Nickname</th>
                                         <th class="wd-15p">Account ID</th>
-                                        <th class="wd-20p">pts</th>
-                                        <th class="wd-20p">Add pts</th>
+                                        <th class="wd-20p">P</th>
+                                        <th class="wd-20p">Add P</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -72,11 +72,11 @@
                                             <td style="display: flex;">
                                                 <input type="number" id="{{'point_' . $account->id}}" class="form-control" step=".01" style="margin-left: 1rem; max-width: 15rem;">
                                                 <select class="form-control custom-select" id="{{'way_' . $account->id}}" style="margin-left: 1rem; max-width: 10rem;">
-                                                    <option value="0">-- pts way --</option>
-                                                    <option value="1">pts</option>
+                                                    <option value="0">-- P way --</option>
+                                                    <option value="1">P</option>
                                                     <option value="2">%</option>
                                                 </select>
-                                                <input type="button" id="{{'add_' . $account->id}}" class="btn btn-primary btn-block" value="Add pts" style="margin-left: 1rem; max-width: 10rem;">
+                                                <input type="button" id="{{'add_' . $account->id}}" class="btn btn-primary btn-block" value="Add P" style="margin-left: 1rem; max-width: 10rem;">
                                             </td>
                                         </tr>
                                     @endforeach
@@ -192,12 +192,12 @@
         function call_ajax() {
             if (add_method == 0)
             {
-                alert('Please select how to add pts。');
+                alert('Please select how to add P。');
                 return ;
             }
             if (point_value == '' || point_value == 0)
             {
-                alert('Please type pts value。');
+                alert('Please type P value。');
                 return ;
             }
             if (account_list.length == 0)
