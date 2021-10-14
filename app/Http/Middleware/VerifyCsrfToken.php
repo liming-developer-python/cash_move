@@ -24,6 +24,7 @@ class VerifyCsrfToken extends Middleware
         '/admin/delete_group',
         '/admin/group_add_point',
         '/admin/create_account',
+        '/admin/semester_add',
         '/admin/user_delete',
         '/admin/export_confirm',
         '/user/export_point',

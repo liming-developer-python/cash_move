@@ -136,6 +136,16 @@ class AdminController extends Controller
         }
     }
 
+    public function semesterAdd(Request $request)
+    {
+        $percent = (100 + 6) / 100;
+        DB::table('account')
+            ->update([
+                'point'=>DB::raw('point*'.$percent)
+            ]);
+        return True;
+    }
+
     public function accountAddPoint(Request $request)
     {
         $account_list = $request['account_id'];

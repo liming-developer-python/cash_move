@@ -41,6 +41,7 @@ Route::post('/admin/user_delete', [AdminController::class, 'userDelete'])->middl
 Route::get('/admin/account', [AdminController::class, 'showAccount'])->middleware('is_admin');
 Route::post('/admin/create_account', [AdminController::class, 'createAccount'])->middleware('is_admin');
 Route::post('/admin/account_add_point', [AdminController::class, 'accountAddPoint'])->middleware('is_admin');
+Route::post('/admin/semester_add', [AdminController::class, 'semesterAdd'])->middleware('is_admin');
 Route::get('/admin/group', [AdminController::class, 'showGroup'])->middleware('is_admin');
 Route::post('/admin/create_group', [AdminController::class, 'createGroup'])->middleware('is_admin');
 Route::post('/admin/get_group_members', [AdminController::class, 'getGroupMembers'])->middleware('is_admin');

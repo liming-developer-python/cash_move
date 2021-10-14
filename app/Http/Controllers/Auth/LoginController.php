@@ -53,11 +53,11 @@ class LoginController extends Controller
         $input = $request->all();
 
         $this->validate($request, [
-            'email'     =>  'required|email',
+            'nickname'     =>  'required',
             'password'  =>  'required',
         ]);
 
-        $userID = DB::table('users')->select('id')->where('email', $input['email'])->get();
+        $userID = DB::table('users')->select('id')->where('name', $input['nickname'])->get();
         if (count($userID) == 0)
         {
             return view('auth.login', [
@@ -82,7 +82,7 @@ class LoginController extends Controller
 
 //        $remember = $input['remember'] ? true : false;
 
-        if(Auth::attempt(array('email' => $input['email'], 'password' => $input['password']), true))
+        if(Auth::attempt(array('name' => $input['nickname'], 'password' => $input['password']), true))
         {
             if(auth()->user()->is_admin == 1){
                 return redirect()->route('admin.dash');

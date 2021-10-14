@@ -9,6 +9,7 @@
         <div class="side-app">
             <div class="page-header">
                 <h4 class="page-title">Accounts</h4>
+                <input type="button" id="semester_add" class="btn btn-primary btn-block w-25" value="6% Add Per 3 Month" style="margin-left: 1rem;">
             </div>
             <div class="row">
                 <div class="col-md-12 col-lg-12">
@@ -32,16 +33,6 @@
                                     </div>
                                 </div>
                             </div>
-{{--                            <div class="card-title">Multi-Add: </div>--}}
-{{--                            <div style="display: flex;">--}}
-{{--                                <input type="number" id="multi_point" class="form-control" step=".01" style="margin-left: 1rem; max-width: 15rem;">--}}
-{{--                                <select class="form-control custom-select" id="multi_way" style="margin-left: 1rem; max-width: 10rem;">--}}
-{{--                                    <option value="0">-- 追加方式 --</option>--}}
-{{--                                    <option value="1">P</option>--}}
-{{--                                    <option value="2">%</option>--}}
-{{--                                </select>--}}
-{{--                                <input type="button" id="multi_add" class="btn btn-primary btn-block" value="ポイント追加" style="margin-left: 1rem; max-width: 10rem;">--}}
-{{--                            </div>--}}
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -158,6 +149,22 @@
                     'user_id': account_user_id,
                 },
                 success: function () {
+                    location.reload();
+                }
+            });
+        });
+
+        $('#semester_add').click(function () {
+            $("#loadMe").modal({
+                backdrop: "static", //remove ability to close modal with click
+                keyboard: false, //remove option to close with keyboard
+                show: true //Display loader!
+            });
+            $.ajax({
+                type: 'POST',
+                url: "{{url('/admin/semester_add')}}",
+                success: function () {
+                    $("#loadMe").modal("hide");
                     location.reload();
                 }
             });
