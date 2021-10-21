@@ -22,8 +22,8 @@
                                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                     <tr>
+                                        <th class="wd-10p">No</th>
                                         <th class="wd-10p">ID</th>
-                                        <th class="wd-10p">NickName</th>
                                         <th class="wd-15p">Email</th>
                                         <th class="wd-20p">Registration Date</th>
                                         <th class="wd-15p">Verify</th>

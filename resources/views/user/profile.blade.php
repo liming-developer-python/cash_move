@@ -21,9 +21,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Nickname</label>
+                                <label class="form-label">ID</label>
                                 <input id="name" type="form-control" class="form-control" value="{{$info->name}}"/>
-                                <p style="font-size: 0.8rem; color: blueviolet;">＊ Nickname must contain 8 characters in maximum.</p>
+                                <p style="font-size: 0.8rem; color: blueviolet;">＊ ID must contain 8 characters in maximum.</p>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Email</label>

@@ -40,8 +40,8 @@
                                     <thead>
                                     <tr>
                                         <th class="wd-20p"></th>
-                                        <th class="wd-20p">User ID</th>
-                                        <th class="wd-20p">Nickname</th>
+                                        <th class="wd-20p">No</th>
+                                        <th class="wd-20p">ID</th>
                                         <th class="wd-15p">Account ID</th>
                                         <th class="wd-20p">P</th>
                                         <th class="wd-20p">Add P</th>
@@ -101,7 +101,7 @@
                             <div class="form-group">
                                 <label class="form-label">Please select user。</label>
                                 <select class="form-control custom-select" id="user_list">
-                                    <option value="0">-- nickname --</option>
+                                    <option value="0">-- ID --</option>
                                     @foreach($users as $user)
                                         <option value="{{$user->user_id}}">{{$user->name}}</option>
                                     @endforeach
