@@ -26,7 +26,8 @@
                                         <strong>This nickname is already used.</strong>
                                     </span>
                                 @enderror
-                                <p style="font-size: 0.8rem; color: black;">＊ Nickname must contain 8 characters in maximum.</p>
+                                <p style="font-size: 0.8rem; color: black;">＊ Nickname is shorter than 16 alphanumerics.</p>
+                                <p style="font-size: 0.8rem; color: black;">＊ Nickname will be used for login id.</p>
                             </div>
                         </div>
 
