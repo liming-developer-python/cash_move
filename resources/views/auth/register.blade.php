@@ -26,6 +26,7 @@
                                         <strong>This nickname is already used.</strong>
                                     </span>
                                 @enderror
+                                <p style="font-size: 0.8rem; color: black;">＊ Nickname must contain 8 characters in maximum.</p>
                             </div>
                         </div>
 

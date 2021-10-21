@@ -56,6 +56,7 @@ Route::post('/admin/export_confirm', [AdminController::class, 'confirmExport'])-
 // User Pages
 Route::get('/profile', [HomeController::class, 'profilePage']);
 Route::get('/export', [HomeController::class, 'exportPage']);
+Route::get('/history', [HomeController::class, 'historyPage']);
 Route::post('/user/edit_profile', [HomeController::class, 'saveUpdateProfile']);
 Route::get('/my-account', [HomeController::class, 'showAccountPage']);
 Route::post('/user/get_account_list', [HomeController::class, 'getAccountList']);

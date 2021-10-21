@@ -204,6 +204,32 @@ class HomeController extends Controller
             ['user_id'=>$userID, 'account_info'=>$account_info, 'export_list'=>$export_info, 'idx' => 0]);
     }
 
+    public function historyPage()
+    {
+        $userID = Auth::id();
+        $account_info = DB::table('users')
+            ->select('account.account_id')
+            ->leftJoin('account', 'users.id', 'account.user_id')
+            ->where('users.id', $userID)
+            ->get();
+
+        $account_info -> transform(function($i) {
+            return (array)$i;
+        });
+        $account_array = $account_info -> toArray();
+
+        $history = DB::table('point_movement_history');
+        foreach ($account_array as $key => $value){
+//            if($key == 0)
+            $history = $history -> where('sender', $value) -> orWhere('receiver', $value);
+//            else
+//                $history = $history -> orWhere('receiver', $value);
+        }
+        $history = $history -> get();
+
+        return view('user.history', ['history'=>$history, 'idx' => 0]);
+    }
+
     public function exportPoint(Request $request)
     {
         $account_id = $request['id'];

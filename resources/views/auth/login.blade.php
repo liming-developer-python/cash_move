@@ -42,6 +42,7 @@
                                         <strong>Please Input correct nickname and password</strong>
                                     </span>
                                 @enderror
+                                <p style="font-size: 0.8rem; color: black;">＊ Put nickname to login.</p>
                             </div>
                         </div>
 

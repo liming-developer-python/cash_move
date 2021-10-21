@@ -9,7 +9,7 @@
         <div class="side-app">
             <div class="row">
                 <div class="col-lg-1"></div>
-                <div class="col-lg-4">
+                <div class="col-lg-8">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Profile</h3>
@@ -23,6 +23,7 @@
                             <div class="form-group">
                                 <label class="form-label">Nickname</label>
                                 <input id="name" type="form-control" class="form-control" value="{{$info->name}}"/>
+                                <p style="font-size: 0.8rem; color: blueviolet;">＊ Nickname must contain 8 characters in maximum.</p>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Email</label>
@@ -36,6 +37,7 @@
                             <div class="form-group">
                                 <label class="form-label">New Password</label>
                                 <input id="password" type="password" class="form-control" value="password"/>
+                                <p style="font-size: 0.8rem; color: blueviolet;">＊ Password must contain at least 8 characters.</p>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Confirm New Password</label>
@@ -52,24 +54,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Transfer History</h3>
-                        </div>
-                        @foreach( $history as $detail )
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-box tilebox-one">
-                                        <i class="icon-layers float-right text-muted"><i class="fa fa-bar-chart text-secondary" aria-hidden="true"></i></i>
-                                        <h6 class="text-drak text-uppercase mt-0" style="color: #007bff;">Account ID : {{$detail->receiver}}</h6>
-                                        <h2 class="m-b-20">{{$detail->amount}}</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
+{{--                <div class="col-lg-4">--}}
+{{--                    <div class="card">--}}
+{{--                        <div class="card-header">--}}
+{{--                            <h3 class="card-title">Transfer History</h3>--}}
+{{--                        </div>--}}
+{{--                        @foreach( $history as $detail )--}}
+{{--                            <div class="card">--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <div class="card-box tilebox-one">--}}
+{{--                                        <i class="icon-layers float-right text-muted"><i class="fa fa-bar-chart text-secondary" aria-hidden="true"></i></i>--}}
+{{--                                        <h6 class="text-drak text-uppercase mt-0" style="color: #007bff;">Account ID : {{$detail->receiver}}</h6>--}}
+{{--                                        <h2 class="m-b-20">{{$detail->amount}}</h2>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>
