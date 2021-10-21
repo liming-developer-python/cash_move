@@ -26,6 +26,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/import') }}">
+                                Import
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url('/history') }}">
                                 History
                             </a>

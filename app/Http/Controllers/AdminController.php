@@ -143,6 +143,19 @@ class AdminController extends Controller
             ->update([
                 'point'=>DB::raw('point*'.$percent)
             ]);
+        $accounts = DB::table('account')
+            -> select('point', 'account_id')
+            -> get();
+
+        foreach ($accounts as $account)
+        {
+            DB::table('add_admin')
+                ->insert([
+                    'amount'        =>  $account->point * 0.06,
+                    'account_id'    =>  $account->account_id,
+                    'time'          =>  Carbon::now(),
+                ]);
+        }
         return True;
     }
 
@@ -166,6 +179,17 @@ class AdminController extends Controller
                     ->where('id', $account_id)
                     ->select('user_id', 'point', 'account_id')
                     ->get();
+
+                foreach ($account_info as $account)
+                {
+                    DB::table('add_admin')
+                        ->insert([
+                            'amount'        =>  $point,
+                            'account_id'    =>  $account->account_id,
+                            'time'          =>  Carbon::now(),
+                        ]);
+                }
+
                 $account_info -> transform(function($i) {
                     return (array)$i;
                 });
@@ -196,6 +220,17 @@ class AdminController extends Controller
                     ->where('id', $account_id)
                     ->select('user_id', 'point', 'account_id')
                     ->get();
+
+                foreach ($account_info as $account)
+                {
+                    DB::table('add_admin')
+                        ->insert([
+                            'amount'        =>  $account->point * ($percent - 1),
+                            'account_id'    =>  $account->account_id,
+                            'time'          =>  Carbon::now(),
+                        ]);
+                }
+
                 $account_info -> transform(function($i) {
                     return (array)$i;
                 });
@@ -316,6 +351,21 @@ class AdminController extends Controller
                         ->update([
                             'point'=>DB::raw('point+'.$point)
                         ]);
+
+                    $account_info = DB::table('account')
+                        ->where('id', $account_id)
+                        ->select('user_id', 'point', 'account_id')
+                        ->get();
+
+                    foreach ($account_info as $account)
+                    {
+                        DB::table('add_admin')
+                            ->insert([
+                                'amount'        =>  $point,
+                                'account_id'    =>  $account->account_id,
+                                'time'          =>  Carbon::now(),
+                            ]);
+                    }
                 }
                 else if ($method == 2)
                 {
@@ -325,10 +375,24 @@ class AdminController extends Controller
                         ->update([
                             'point'=>DB::raw('point*'.$percent)
                         ]);
+
+                    $account_info = DB::table('account')
+                        ->where('id', $account_id)
+                        ->select('user_id', 'point', 'account_id')
+                        ->get();
+
+                    foreach ($account_info as $account)
+                    {
+                        DB::table('add_admin')
+                            ->insert([
+                                'amount'        =>  $account->point * ($percent - 1),
+                                'account_id'    =>  $account->account_id,
+                                'time'          =>  Carbon::now(),
+                            ]);
+                    }
                 }
             }
         }
-
         return true;
     }
 

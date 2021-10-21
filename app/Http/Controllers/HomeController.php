@@ -230,6 +230,29 @@ class HomeController extends Controller
         return view('user.history', ['history'=>$history, 'idx' => 0]);
     }
 
+    public function importPage()
+    {
+        $userID = Auth::id();
+        $account_info = DB::table('users')
+            ->select('account.account_id')
+            ->leftJoin('account', 'users.id', 'account.user_id')
+            ->where('users.id', $userID)
+            ->get();
+
+        $account_info -> transform(function($i) {
+            return (array)$i;
+        });
+        $account_array = $account_info -> toArray();
+
+        $history = DB::table('add_admin');
+        foreach ($account_array as $key => $value){
+            $history = $history -> where('account_id', $value);
+        }
+        $history = $history -> get();
+
+        return view('user.import', ['history'=>$history, 'idx' => 0]);
+    }
+
     public function exportPoint(Request $request)
     {
         $account_id = $request['id'];

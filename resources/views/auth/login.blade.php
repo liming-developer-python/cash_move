@@ -24,14 +24,14 @@
                     @endif
                     @if ($admin_check == 4)
                         <p style="text-align: center; color: red; font-size: 1.2rem; margin: auto; padding-bottom: 2vh;">
-                            <strong>Please input correct nickname and password</strong>
+                            <strong>Please input correct ID and password</strong>
                         </p>
                     @endif
                     <form method="POST" action="{{ url('/login') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">Nickname</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">ID</label>
 
                             <div class="col-md-6">
 {{--                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>--}}
@@ -39,7 +39,7 @@
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>Please Input correct nickname and password</strong>
+                                        <strong>Please Input correct ID and password</strong>
                                     </span>
                                 @enderror
 {{--                                <p style="font-size: 0.8rem; color: black;">＊ Put nickname to login.</p>--}}
@@ -54,7 +54,7 @@
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>Please Input correct nickname and password</strong>
+                                        <strong>Please Input correct ID and password</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -73,7 +73,7 @@
                         </div>
                         @if ($admin_check == 2)
                             <p style="text-align: center; color: red; font-size: 1.2rem; margin: auto; padding-bottom: 2vh;">
-                                <strong>Please Input correct nickname and password</strong>
+                                <strong>Please Input correct ID and password</strong>
                             </p>
                         @endif
                         <div class="form-group row mb-0">

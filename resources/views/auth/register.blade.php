@@ -16,18 +16,18 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Nickname</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">ID</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>This nickname is already used.</strong>
+                                        <strong>Please input correct ID.</strong>
                                     </span>
                                 @enderror
-                                <p style="font-size: 0.8rem; color: black;">＊ Nickname is shorter than 16 alphanumerics.</p>
-                                <p style="font-size: 0.8rem; color: black;">＊ Nickname will be used for login id.</p>
+                                <p style="font-size: 0.8rem; color: black;">＊ ID must be 8 alphanumerics.</p>
+                                <p style="font-size: 0.8rem; color: black;">＊ ID will be used as login id.</p>
                             </div>
                         </div>
 
