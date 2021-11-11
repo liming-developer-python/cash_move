@@ -16,7 +16,7 @@
                         </div>
 
                         <div class="card-body">
-                            <div class="card-box tilebox-one w-100">
+                            <div class="card-box tilebox-one w-100 table-responsive">
                                 <table id="history" class="table table-striped table-bordered dataTable no-footer" style="width: 100%; color: black">
                                     <thead>
                                     <tr>

@@ -43,6 +43,7 @@
                                         <th class="wd-20p">No</th>
                                         <th class="wd-20p">ID</th>
                                         <th class="wd-15p">Account ID</th>
+                                        <th class="wd-20p">Fixed P</th>
                                         <th class="wd-20p">P</th>
                                         <th class="wd-20p">Add P</th>
                                     </tr>
@@ -59,6 +60,7 @@
                                             <td>{{$account->user_id}}</td>
                                             <td>{{$account->name}}</td>
                                             <td>{{$account->account_id}}</td>
+                                            <td>{{$account->point_fix}}</td>
                                             <td>{{$account->point}}</td>
                                             <td style="display: flex;">
                                                 <input type="number" id="{{'point_' . $account->id}}" class="form-control" step=".01" style="margin-left: 1rem; max-width: 15rem;">

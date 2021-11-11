@@ -9,14 +9,14 @@
         <div class="side-app">
             <div class="row">
                 <div class="col-lg-1"></div>
-                <div class="col-lg-8">
+                <div class="col-lg-8 col-xs-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Transfer History</h3>
                         </div>
 
                         <div class="card-body">
-                            <div class="card-box tilebox-one w-100">
+                            <div class="card-box tilebox-one w-100 table-responsive">
                                 <table id="history" class="table table-striped table-bordered dataTable no-footer" style="width: 100%; color: black">
                                     <thead>
                                     <tr>

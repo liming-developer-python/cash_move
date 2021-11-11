@@ -16,18 +16,16 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">ID</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nickname</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="email" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>Please input correct ID.</strong>
+                                        <strong>Please input correct Nickname.</strong>
                                     </span>
                                 @enderror
-                                <p style="font-size: 0.8rem; color: black;">＊ ID must be 8 alphanumerics.</p>
-                                <p style="font-size: 0.8rem; color: black;">＊ ID will be used as login id.</p>
                             </div>
                         </div>
 
